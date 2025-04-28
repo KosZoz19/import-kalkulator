@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import Kalkulator</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px #e60000;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select, button, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            background-color: #000;
+            color: #fff;
+            border: 2px solid #e60000;
+            border-radius: 8px;
+        }
+        button {
+            margin-top: 20px;
+            background-color: #e60000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #cc0000;
+            box-shadow: 0 0 10px #ff0000;
+        }
+        textarea {
+            background: #1a1a1a;
+            margin-top: 20px;
+            height: 300px;
+            border-radius: 8px;
+        }
+        select:focus, input:focus, button:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 0 8px #e60000;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🚗 Import Kalkulator</h1>
+
+    <label>Rozmiar</label>
+    <select id="size">
+        <option value="Sedan">Sedan</option>
+        <option value="SUV">SUV</option>
+        <option value="Pickup">Pickup</option>
+        <option value="Van">Van</option>
+    </select>
+
+    <label>Oferta (€)</label>
+    <input type="number" id="offer" value="20000">
+
+    <label>Ubezpieczenie</label>
+    <select id="insurance">
+        <option value="Nie">Nie</option>
+        <option value="Tak">Tak</option>
+    </select>
+
+    <label>Aukcja</label>
+    <select id="auction">
+        <option value="Copart">Copart</option>
+        <option value="IAAI">IAAI</option>
+    </select>
+
+    <label>Lokalizacja</label>
+    <select id="location">
+        <option value="CHAMBERSBURG 17201">Chambersburg</option>
+        <option value="HOUSTON">Houston</option>
+        <option value="LA">Los Angeles</option>
+    </select>
+
+    <label>Dodatkowe Wydatki (€)</label>
+    <input type="number" id="extra" value="0">
+
+    <label>Niebezpieczny ładunek</label>
+    <select id="hazard">
+        <option value="Nie">Nie</option>
+        <option value="Tak">Tak</option>
+    </select>
+
+    <label>Kurs EUR → PLN</label>
+    <input type="number" id="eurToPln" value="4.28" step="0.01">
+
+    <label>Agencja Celna (EUR)</label>
+    <input type="number" id="agencyFee" value="600">
+
+    <label>Procent Akcyzy</label>
+    <select id="excise">
+        <option value="0">0%</option>
+        <option value="1.55">1.55%</option>
+        <option value="3.1">3.1%</option>
+        <option value="8.3">8.3%</option>
+        <option value="18.6">18.6%</option>
+    </select>
+
+    <label>Wartość rynkowa (€)</label>
+    <input type="number" id="marketValue" value="0">
+
+    <button onclick="calculate()">✅ Oblicz</button>
+
+    <textarea id="result" readonly></textarea>
+</div>
+
+<script>
+function calculate() {
+    const offer = parseFloat(document.getElementById('offer').value);
+    const extra = parseFloat(document.getElementById('extra').value);
+    const hazard = document.getElementById('hazard').value === "Tak" ? 100 : 0;
+    const insurance = document.getElementById('insurance').value === "Tak" ? 650 : 0;
+    const auction = document.getElementById('auction').value;
+    const location = document.getElementById('location').value;
+
+    const auction_fee = auction === "Copart" ? 1750 : 1785;
+    const land_costs = {"CHAMBERSBURG 17201": 650, "HOUSTON": 950, "LA": 1050};
+    const land = land_costs[location] || 650;
+
+    const freight = 900;
+    const company = 750;
+
+    const vehicle_total = offer + auction_fee;
+const delivery_total = land + freight + company + hazard + insurance + extra;
+const overall_eur = vehicle_total + delivery_total;
+
+const eurToPln = parseFloat(document.getElementById('eurToPln').value);
+const agencyFee = parseFloat(document.getElementById('agencyFee').value);
+const duty_eur = Math.round(vehicle_total * 0.1);
+const vat_eur = Math.round((vehicle_total + duty_eur) * 0.23);
+
+const duty_pln = Math.round(duty_eur * eurToPln);
+const vat_pln = Math.round(vat_eur * eurToPln);
+const agency_pln = Math.round(agencyFee * eurToPln);
+const rotterdam_pln = 2800;
+const customs_total = duty_pln + vat_pln + agency_pln + rotterdam_pln;
+
+const excise_percent = parseFloat(document.getElementById('excise').value);
+const marketValue = parseFloat(document.getElementById('marketValue').value);
+const excise_pln = Math.round((excise_percent / 100) * marketValue * eurToPln);
+
+const total_customs_eur = duty_eur + vat_eur + agencyFee + (rotterdam_pln / eurToPln) + (excise_pln / eurToPln);
+const grand_total_eur = overall_eur + Math.round(total_customs_eur);
+const grand_total_pln = customs_total + excise_pln + Math.round(overall_eur * eurToPln);
+
+    document.getElementById('result').value = `
+📍 Port USA: ${location}
+📍 Port Docelowy: Rotterdam
+
+🚗 Koszt Pojazdu: €${offer}
+🧾 Prowizja Aukcji (${auction}): €${auction_fee}
+💰 Koszt z prowizją: €${vehicle_total}
+🚚 Transport Lądowy: €${land}
+🚢 Fracht: €${freight}
+💼 Prowizja Firmy (+VAT): €${company}
+🧾 Dodatkowe Wydatki: €${extra}
+☢️ Niebezpieczny ładunek: €${hazard}
+🛡️ Ubezpieczenie: €${insurance}
+📦 Razem Dostawa: €${delivery_total}
+💵 Całkowite Wydatki: €${overall_eur}
+
+💰 Wynik Opłat Celnych:
+   Cło: €${duty_eur} / PLN ${duty_pln}
+   VAT: €${vat_eur} / PLN ${vat_pln}
+   Agencja Celna: €${agencyFee} / PLN ${agency_pln}
+   Dostawa z Rotterdamu: PLN ${rotterdam_pln}
+   Akcyza: PLN ${excise_pln}
+🧾 Razem Cło: PLN ${customs_total + excise_pln}
+
+🏁 SUMA: €${grand_total_eur} / PLN ${grand_total_pln}
+    `;
+}
+</script>
+
+</body>
+</html>

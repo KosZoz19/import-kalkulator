@@ -55,6 +55,14 @@
             outline: none;
             box-shadow: 0 0 8px #e60000;
         }
+        .akcyza-box {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dashed #e60000;
+        }
+        .akcyza-box p {
+            font-size: 1.1em;
+        }
     </style>
 </head>
 <body>
@@ -69,7 +77,7 @@
         <option value="Van">Van</option>
     </select>
 
-    <label>Oferta (€)</label>
+    <label>Oferta ($)</label>
     <input type="number" id="offer" value="20000">
 
     <label>Ubezpieczenie</label>
@@ -85,13 +93,60 @@
     </select>
 
     <label>Lokalizacja</label>
-    <select id="location">
-        <option value="CHAMBERSBURG 17201">Chambersburg</option>
-        <option value="HOUSTON">Houston</option>
-        <option value="LA">Los Angeles</option>
-    </select>
+    <input list="locations" id="location">
+    <datalist id="locations">
+        <option value="NEW YORK 10001">NEW YORK 10001</option>
+        <option value="LOS ANGELES 90001">LOS ANGELES 90001</option>
+        <option value="HOUSTON 77001">HOUSTON 77001</option>
+        <option value="PHILADELPHIA 19019">PHILADELPHIA 19019</option>
+        <option value="SAVANNAH 31401">SAVANNAH 31401</option>
+        <option value="CHARLESTON 29401">CHARLESTON 29401</option>
+        <option value="BALTIMORE 21201">BALTIMORE 21201</option>
+        <option value="NORFOLK 23501">NORFOLK 23501</option>
+        <option value="JACKSONVILLE 32099">JACKSONVILLE 32099</option>
+        <option value="BRUNSWICK 31520">BRUNSWICK 31520</option>
+        <option value="PORT EVERGLADES 33316">PORT EVERGLADES 33316</option>
+        <option value="MIAMI 33101">MIAMI 33101</option>
+        <option value="TAMPA 33601">TAMPA 33601</option>
+        <option value="PORT CANAVERAL 32920">PORT CANAVERAL 32920</option>
+        <option value="MOBILE 36601">MOBILE 36601</option>
+        <option value="NEW ORLEANS 70112">NEW ORLEANS 70112</option>
+        <option value="GALVESTON 77550">GALVESTON 77550</option>
+        <option value="CORPUS CHRISTI 78401">CORPUS CHRISTI 78401</option>
+        <option value="PORT ARTHUR 77640">PORT ARTHUR 77640</option>
+        <option value="BEAUMONT 77701">BEAUMONT 77701</option>
+        <option value="SEATTLE 98101">SEATTLE 98101</option>
+        <option value="TACOMA 98401">TACOMA 98401</option>
+        <option value="PORTLAND 97201">PORTLAND 97201</option>
+        <option value="OAKLAND 94601">OAKLAND 94601</option>
+        <option value="SAN FRANCISCO 94101">SAN FRANCISCO 94101</option>
+        <option value="LONG BEACH 90802">LONG BEACH 90802</option>
+        <option value="SAN DIEGO 92101">SAN DIEGO 92101</option>
+        <option value="ANCHORAGE 99501">ANCHORAGE 99501</option>
+        <option value="DUTCH HARBOR 99692">DUTCH HARBOR 99692</option>
+        <option value="HONOLULU 96801">HONOLULU 96801</option>
+        <option value="OCEANSIDE 92054">OCEANSIDE 92054</option>
+        <option value="SAN PEDRO 90731">SAN PEDRO 90731</option>
+        <option value="FORT LAUDERDALE 33301">FORT LAUDERDALE 33301</option>
+        <option value="WEST PALM BEACH 33401">WEST PALM BEACH 33401</option>
+        <option value="PORTSMOUTH 23701">PORTSMOUTH 23701</option>
+        <option value="WILMINGTON 28401">WILMINGTON 28401</option>
+        <option value="MOREHEAD CITY 28557">MOREHEAD CITY 28557</option>
+        <option value="BOSTON 02108">BOSTON 02108</option>
+        <option value="PROVIDENCE 02901">PROVIDENCE 02901</option>
+        <option value="NEW HAVEN 06510">NEW HAVEN 06510</option>
+        <option value="BRIDGEPORT 06604">BRIDGEPORT 06604</option>
+        <option value="ELIZABETH 07201">ELIZABETH 07201</option>
+        <option value="PORT NEWARK 07114">PORT NEWARK 07114</option>
+        <option value="BAYONNE 07002">BAYONNE 07002</option>
+        <option value="PERTH AMBOY 08861">PERTH AMBOY 08861</option>
+        <option value="CLEVELAND 44101">CLEVELAND 44101</option>
+        <option value="DETROIT 48201">DETROIT 48201</option>
+        <option value="CHICAGO 60601">CHICAGO 60601</option>
+        <option value="INDIANAPOLIS 46201">INDIANAPOLIS 46201</option>
+    </datalist>
 
-    <label>Dodatkowe Wydatki (€)</label>
+    <label>Dodatkowe Wydatki ($)</label>
     <input type="number" id="extra" value="0">
 
     <label>Niebezpieczny ładunek</label>
@@ -100,11 +155,15 @@
         <option value="Tak">Tak</option>
     </select>
 
-    <label>Kurs EUR → PLN</label>
+    <label>Kurs USD → PLN</label>
     <input type="number" id="eurToPln" value="4.28" step="0.01">
 
-    <label>Agencja Celna (EUR)</label>
+    <label>Agencja Celna (USD)</label>
     <input type="number" id="agencyFee" value="600">
+
+    <button onclick="calculate()">✅ Oblicz</button>
+
+    <textarea id="result" readonly></textarea>
 
     <label>Procent Akcyzy</label>
     <select id="excise">
@@ -115,15 +174,34 @@
         <option value="18.6">18.6%</option>
     </select>
 
-    <label>Wartość rynkowa (€)</label>
+    <label>Wartość rynkowa ($)</label>
     <input type="number" id="marketValue" value="0">
 
-    <button onclick="calculate()">✅ Oblicz</button>
-
-    <textarea id="result" readonly></textarea>
+    <div class="akcyza-box">
+        <p> <span id="exciseOutput">0 PLN</span></p>
+    </div>
 </div>
 
 <script>
+    function updateExciseResult() {
+    const excise_percent = parseFloat(document.getElementById('excise').value);
+    const marketValue = parseFloat(document.getElementById('marketValue').value);
+    const eurToPln = parseFloat(document.getElementById('eurToPln').value);
+    
+    if (!isNaN(excise_percent) && !isNaN(marketValue) && !isNaN(eurToPln)) {
+        const excise_pln = Math.round((excise_percent / 100) * marketValue * eurToPln);
+        document.getElementById('exciseOutput').innerText = `Wynik Akcyzy: ${excise_pln} PLN`;
+    } else {
+        document.getElementById('exciseOutput').innerText = 'Wynik Akcyzy: 0 PLN';
+    }
+}
+
+document.getElementById('excise').addEventListener('change', updateExciseResult);
+document.getElementById('marketValue').addEventListener('input', updateExciseResult);
+document.getElementById('eurToPln').addEventListener('input', updateExciseResult);
+
+// Wywołaj też przy starcie, by był aktualny wynik
+window.addEventListener('DOMContentLoaded', updateExciseResult);
 function calculate() {
     const offer = parseFloat(document.getElementById('offer').value);
     const extra = parseFloat(document.getElementById('extra').value);
@@ -133,50 +211,100 @@ function calculate() {
     const location = document.getElementById('location').value;
 
     const auction_fee = auction === "Copart" ? 1750 : 1785;
-    const land_costs = {"CHAMBERSBURG 17201": 650, "HOUSTON": 950, "LA": 1050};
-    const land = land_costs[location] || 650;
+    const land_costs = {
+        "NEW YORK 10001": 850,
+    "LOS ANGELES 90001": 1050,
+    "HOUSTON 77001": 950,
+    "PHILADELPHIA 19019": 900,
+    "SAVANNAH 31401": 870,
+    "CHARLESTON 29401": 880,
+    "BALTIMORE 21201": 870,
+    "NORFOLK 23501": 860,
+    "JACKSONVILLE 32099": 880,
+    "BRUNSWICK 31520": 875,
+    "PORT EVERGLADES 33316": 890,
+    "MIAMI 33101": 900,
+    "TAMPA 33601": 890,
+    "PORT CANAVERAL 32920": 900,
+    "MOBILE 36601": 870,
+    "NEW ORLEANS 70112": 880,
+    "GALVESTON 77550": 910,
+    "CORPUS CHRISTI 78401": 915,
+    "PORT ARTHUR 77640": 920,
+    "BEAUMONT 77701": 925,
+    "SEATTLE 98101": 980,
+    "TACOMA 98401": 985,
+    "PORTLAND 97201": 970,
+    "OAKLAND 94601": 990,
+    "SAN FRANCISCO 94101": 995,
+    "LONG BEACH 90802": 1020,
+    "SAN DIEGO 92101": 1010,
+    "ANCHORAGE 99501": 1200,
+    "DUTCH HARBOR 99692": 1250,
+    "HONOLULU 96801": 1300,
+    "OCEANSIDE 92054": 1020,
+    "SAN PEDRO 90731": 1030,
+    "FORT LAUDERDALE 33301": 890,
+    "WEST PALM BEACH 33401": 880,
+    "PORTSMOUTH 23701": 860,
+    "WILMINGTON 28401": 865,
+    "MOREHEAD CITY 28557": 860,
+    "BOSTON 02108": 870,
+    "PROVIDENCE 02901": 865,
+    "NEW HAVEN 06510": 860,
+    "BRIDGEPORT 06604": 870,
+    "ELIZABETH 07201": 850,
+    "PORT NEWARK 07114": 850,
+    "BAYONNE 07002": 850,
+    "PERTH AMBOY 08861": 855,
+    "CLEVELAND 44101": 875,
+    "DETROIT 48201": 880,
+    "CHICAGO 60601": 890,
+    "INDIANAPOLIS 46201": 900
+    };
 
+    const land = land_costs[location] || 650;
     const freight = 900;
     const company = 750;
 
     const vehicle_total = offer + auction_fee;
-const delivery_total = land + freight + company + hazard + insurance + extra;
-const overall_eur = vehicle_total + delivery_total;
+    const delivery_total = land + freight + company + hazard + insurance + extra;
+    const overall_usd = vehicle_total + delivery_total;
 
-const eurToPln = parseFloat(document.getElementById('eurToPln').value);
-const agencyFee = parseFloat(document.getElementById('agencyFee').value);
-const duty_eur = Math.round(vehicle_total * 0.1);
-const vat_eur = Math.round((vehicle_total + duty_eur) * 0.23);
+    const eurToPln = parseFloat(document.getElementById('eurToPln').value);
+    const agencyFee = parseFloat(document.getElementById('agencyFee').value);
+    const duty_eur = Math.round(offer * 0.1);
+    const vat_eur = Math.round((offer + duty_eur) * 0.23);
 
-const duty_pln = Math.round(duty_eur * eurToPln);
-const vat_pln = Math.round(vat_eur * eurToPln);
-const agency_pln = Math.round(agencyFee * eurToPln);
-const rotterdam_pln = 2800;
-const customs_total = duty_pln + vat_pln + agency_pln + rotterdam_pln;
+    const duty_pln = Math.round(duty_eur * eurToPln);
+    const vat_pln = Math.round(vat_eur * eurToPln);
+    const agency_pln = Math.round(agencyFee * eurToPln);
+    const rotterdam_pln = 2800;
+    const customs_total = duty_pln + vat_pln + agency_pln + rotterdam_pln;
 
-const excise_percent = parseFloat(document.getElementById('excise').value);
-const marketValue = parseFloat(document.getElementById('marketValue').value);
-const excise_pln = Math.round((excise_percent / 100) * marketValue * eurToPln);
+    const excise_percent = parseFloat(document.getElementById('excise').value);
+    const marketValue = parseFloat(document.getElementById('marketValue').value);
+    const excise_pln = Math.round((excise_percent / 100) * marketValue * eurToPln);
 
-const total_customs_eur = duty_eur + vat_eur + agencyFee + (rotterdam_pln / eurToPln) + (excise_pln / eurToPln);
-const grand_total_eur = overall_eur + Math.round(total_customs_eur);
-const grand_total_pln = customs_total + excise_pln + Math.round(overall_eur * eurToPln);
+    const total_customs_eur = duty_eur + vat_eur + agencyFee + (rotterdam_pln / eurToPln) + (excise_pln / eurToPln);
+    const grand_total_usd = overall_usd + Math.round(total_customs_eur);
+    const grand_total_pln = customs_total + excise_pln + Math.round(overall_usd * eurToPln);
 
     document.getElementById('result').value = `
 📍 Port USA: ${location}
 📍 Port Docelowy: Rotterdam
 
-🚗 Koszt Pojazdu: €${offer}
-🧾 Prowizja Aukcji (${auction}): €${auction_fee}
-💰 Koszt z prowizją: €${vehicle_total}
-🚚 Transport Lądowy: €${land}
-🚢 Fracht: €${freight}
-💼 Prowizja Firmy (+VAT): €${company}
-🧾 Dodatkowe Wydatki: €${extra}
-☢️ Niebezpieczny ładunek: €${hazard}
-🛡️ Ubezpieczenie: €${insurance}
-📦 Razem Dostawa: €${delivery_total}
-💵 Całkowite Wydatki: €${overall_eur}
+🚗 Koszt Pojazdu: $${offer}
+🧾 Prowizja Aukcji (${auction}): $${auction_fee}
+💰 Koszt z prowizją: $${vehicle_total}
+🚚 Transport Lądowy: $${land}
+🚢 Fracht: $${freight}
+💼 Prowizja Firmy (+VAT): $${company}
+🧾 Dodatkowe Wydatki: $${extra}
+☢️ Niebezpieczny ładunek: $${hazard}
+🛡️ Ubezpieczenie: $${insurance}
+📦 Razem Dostawa: $${delivery_total}
+💵 Całkowite Wydatki: $${overall_usd}
 
 💰 Wynik Opłat Celnych:
    Cło: €${duty_eur} / PLN ${duty_pln}
@@ -186,7 +314,7 @@ const grand_total_pln = customs_total + excise_pln + Math.round(overall_eur * eu
    Akcyza: PLN ${excise_pln}
 🧾 Razem Cło: PLN ${customs_total + excise_pln}
 
-🏁 SUMA: €${grand_total_eur} / PLN ${grand_total_pln}
+🏁 SUMA: $${grand_total_usd} / PLN ${grand_total_pln}
     `;
 }
 </script>

@@ -861,7 +861,7 @@ function calculate() {
     };
 
     const land = land_costs[location] || 650;
-    const freight = 900;
+    const freight=freight_costs[location];
     const company = 750;
 
     const vehicle_total = offer + auction_fee;

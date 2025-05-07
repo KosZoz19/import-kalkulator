@@ -363,6 +363,94 @@
 </div>
 
 <script>
+    function getCopartFee(price) {
+    if (price <= 49.99) return 25.00;
+    if (price <= 99.99) return 45.00;
+    if (price <= 199.99) return 80.00;
+    if (price <= 299.99) return 120.00;
+    if (price <= 349.99) return 120.00;
+    if (price <= 399.99) return 120.00;
+    if (price <= 449.99) return 160.00;
+    if (price <= 499.99) return 160.00;
+    if (price <= 549.99) return 185.00;
+    if (price <= 599.99) return 185.00;
+    if (price <= 699.99) return 210.00;
+    if (price <= 799.99) return 230.00;
+    if (price <= 899.99) return 250.00;
+    if (price <= 999.99) return 275.00;
+    if (price <= 1199.99) return 325.00;
+    if (price <= 1299.99) return 350.00;
+    if (price <= 1399.99) return 365.00;
+    if (price <= 1499.99) return 380.00;
+    if (price <= 1599.99) return 390.00;
+    if (price <= 1699.99) return 410.00;
+    if (price <= 1799.99) return 420.00;
+    if (price <= 1999.99) return 440.00;
+    if (price <= 2399.99) return 470.00;
+    if (price <= 2499.99) return 480.00;
+    if (price <= 2999.99) return 500.00;
+    if (price <= 3499.99) return 600.00;
+    if (price <= 3999.99) return 675.00;
+    if (price <= 4499.99) return 710.00;
+    if (price <= 4999.99) return 750.00;
+    if (price <= 5499.99) return 750.00;
+    if (price <= 5999.99) return 750.00;
+    if (price <= 6499.99) return 800.00;
+    if (price <= 6999.99) return 800.00;
+    if (price <= 7499.99) return 800.00;
+    if (price <= 7999.99) return 815.00;
+    if (price <= 8499.99) return 840.00;
+    if (price <= 8999.99) return 840.00;
+    if (price <= 9999.99) return 840.00;
+    if (price <= 10499.99) return 850.00;
+    if (price <= 10999.99) return 850.00;
+    if (price <= 11499.99) return 850.00;
+    if (price <= 11999.99) return 850.00;
+    if (price <= 12499.99) return 850.00;
+    if (price <= 14999.99) return 850.00;
+    // For prices above $15,000, apply 7.25% fee
+    return parseFloat((price * 0.0725).toFixed(2));
+}
+function getIAAIFee(price) {
+    if (price <= 99.99) return 20.00;
+    if (price <= 199.99) return 80.00;
+    if (price <= 299.99) return 130.00;
+    if (price <= 349.99) return 137.50;
+    if (price <= 399.99) return 145.00;
+    if (price <= 449.99) return 175.00;
+    if (price <= 499.99) return 185.00;
+    if (price <= 549.99) return 205.00;
+    if (price <= 599.99) return 210.00;
+    if (price <= 699.99) return 240.00;
+    if (price <= 799.99) return 270.00;
+    if (price <= 899.99) return 295.00;
+    if (price <= 999.99) return 320.00;
+    if (price <= 1199.99) return 375.00;
+    if (price <= 1299.99) return 395.00;
+    if (price <= 1399.99) return 410.00;
+    if (price <= 1499.99) return 430.00;
+    if (price <= 1599.99) return 445.00;
+    if (price <= 1699.99) return 465.00;
+    if (price <= 1799.99) return 485.00;
+    if (price <= 1999.99) return 510.00;
+    if (price <= 2499.99) return 535.00;
+    if (price <= 2999.99) return 570.00;
+    if (price <= 3499.99) return 610.00;
+    if (price <= 3999.99) return 655.00;
+    if (price <= 4499.99) return 705.00;
+    if (price <= 4999.99) return 725.00;
+    if (price <= 5499.99) return 750.00;
+    if (price <= 5999.99) return 800.00;
+    if (price <= 6499.99) return 825.00;
+    if (price <= 6999.99) return 845.00;
+    if (price <= 7499.99) return 880.00;
+    if (price <= 7999.99) return 900.00;
+    if (price <= 8499.99) return 925.00;
+    if (price <= 9999.99) return 945.00;
+    if (price <= 14999.99) return 1000.00;
+    // Over $15,000: 7.5% of sale price
+    return parseFloat((price * 0.075).toFixed(2));
+}
     function updateExciseResult() {
     const excise_percent = parseFloat(document.getElementById('excise').value);
     const marketValue = parseFloat(document.getElementById('marketValue').value);
@@ -390,7 +478,7 @@ function calculate() {
     const auction = document.getElementById('auction').value;
     const location = document.getElementById('location').value;
 
-    const auction_fee = auction === "Copart" ? 895 : 940;
+    const auction_fee = auction === "Copart" ? getCopartFee(offer) : getIAAIFee(offer);
 
      const freight_costs = {
         "ABILENE, TX 79601": 975,

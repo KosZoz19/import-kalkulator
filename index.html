@@ -481,471 +481,2081 @@ function calculate() {
     const auction_fee = auction === "Copart" ? getCopartFee(offer) : getIAAIFee(offer);
 
      const freight_costs = {
-        "ABILENE, TX 79601": 975,
-        "ADELANTO (CA) 92301": 1525,
-        "AKRON (OH) 44203": 900,
-        "ALBANY 12205": 900,
-        "ALBUQUERQUE 87105": 975,
-        "ALTOONA 15931": 900,
-        "AMARILLO, TX 79118": 975,
-        "ANCHORAGE 99501": 1525,
-        "ANDREWS, TX 79714": 975,
-        "ANTELOPE 95843": 1525,
-        "APPLETON, WI 54914": 1025,
-        "ATLANTA EAST 30052": 900,
-        "ATLANTA NORTH 30507": 900,
-        "ATLANTA SOUTH 30294": 900,
-        "ATLANTA WEST 30168": 900,
-        "AUGUSTA, GA 30906": 900,
-        "AUSTIN, TX 78130": 975,
-        "BAKERSFIELD 93307": 1525,
-        "BALTIMORE 21048": 900,
-        "BALTIMORE EAST 21225": 900,
-        "BATON ROUGE 70739": 975,
-        "BILLINGS 59103": 1025,
-        "BIRMINGHAM 35023": 900,
-        "BISMARCK (ND) 58501": 1025,
-        "BOISE 83687": 1525,
-        "BUFFALO, NY 14006": 900,
-        "CANDIA NH 03034": 900,
-        "CARTERSVILLE 30120": 900,
-        "CASPER, WY 82604": 1025,
-        "CHAMBERSBURG 17201": 900,
-        "CHARLESTON/Hurricane 25526": 900,
-        "CHICAGO NORTH 60120": 1025,
-        "CHICAGO SOUTH 60411": 570,
-"CHINA GROVE 28023": 900,
-"CICERO, IN 46034": 1025,
-"CLEVELAND EAST 44067": 900,
-"CLEVELAND WEST 44028": 900,
-"COLORADO SPRINGS, CO": 975,
-"COLUMBIA MO 65201": 1025,
-"COLUMBIA SC 29053": 900,
-"COLUMBUS (OH) 43207": 1025,
-"CONCORD NC (28025)": 900,
-"CORPUS CHRISTI, TX 78405": 975,
-"CRASHEDTOYS ATLANTA 30344": 900,
-"CRASHEDTOYS DALLAS": 975,
-"CRASHEDTOYS EAST BETHEL, MN 55011": 1025,
-"CRASHEDTOYS ELDRIDGE (IA) 52748": 1025,
-"CRASHEDTOYS Memphis 38118": 900,
-"CRASHEDTOYS MINNEAPOLIS 55434": 1025,
-"CRASHEDTOYS SACRAMENTO, CA": 1525,
-"DALLAS SOUTH 75172": 975,
-"DALLAS, TX 75051": 975,
-"DANVILLE 24531": 900,
-"DAVENPORT (IA) 52748": 1025,
-"DAYTON, OH 45439": 1025,
-"DENVER/Brighton 80603": 975,
-"DENVER CENTRAL, CO 80229": 975,
-"DENVER SOUTH (CO) 80125": 975,
-"DES MOINES (IA) 50317": 1025,
-"DETROIT 48183": 1025,
-"DOTHAN 36352": 900,
-"DYER (IN) 46311": 1025,
-"EARLINGTON (KY) 42410": 900,
-"EL PASO, TX 79821": 975,
-"EUGENE 97402": 1525,
-"EXETER, RI 02822": 900,
-"FAIRBURN (GA) 30213": 900,
-    "FAYETTEVILLE (AR) 72753": 975,
-    "FLINT 48423": 1025,
-    "FORT WAYNE 46803": 1025,
-    "FREDERICKSBURG (VA) 22408": 900,
-    "FREETOWN, MA 02702": 900,
-    "FRESNO 93725": 1525,
-    "FT. PIERCE 34946": 900,
-    "FT. WORTH, TX 76052": 975,
-    "GASTONIA 28052": 900,
-    "GLASSBORO EAST 08028": 900,
-    "GLASSBORO WEST 08028": 900,
-    "GRAHAM 98338": 1525,
-    "Grenada, MS 38901": 975,
-    "HAMMOND 46320": 1025,
-    "HAMPTON,VA 23666": 900,
-    "HARRISBURG 17028": 900,
-    "HARTFORD 06051": 900,
-    "HARTFORD SPRINGFIELD 06026": 900,
-    "HAYWARD 94545": 1525,
-    "HAYWARD - DESERT VIEW": 1525,
-    "HELENA 59601": 1025,
-    "HONOLULU (KAHALUI, MAUI ISLAND) 96740": 1525,
-    "HONOLULU (KAILUA-KONA, HAWAII ISLAND) 96707": 1525,
-    "HONOLULU (KAPOLEI, OAHU ISLAND) 96766": 1525,
-    "HONOLULU (LIHUE, KAUAI ISLAND) 96766": 1525,
-    "HOUSTON 77073": 975,
-    "HOUSTON EAST": 975,
-    "INDIANAPOLIS 46254": 1025,
-    "IONIA, MI 48875": 1025,
-    "JACKSON 39073": 975,
-    "JACKSONVILLE EAST 32209": 900,
-    "JACKSONVILLE NORTH 32218": 900,
-    "JACKSONVILLE WEST 32220": 900,
-    "KANSAS CITY 66111": 975,
-    "KINCHLOE (MI) 49788": 1025,
-    "KNOXVILLE 37354": 900,
-    "LANSING 48917": 1025,
-    "LAS VEGAS 89115": 1525,
-    "LAS VEGAS WEST (NV) 89032": 1525,
-    "LEXINGTON EAST 40509": 900,
-    "LEXINGTON WEST 40342": 900,
-    "LINCOLN 68366": 1025,
-    "LITTLE ROCK 72032": 825,
-    "LONG BEACH (CA) 90744": 1525,
-    "LONG ISLAND 11719": 900,
-    "LONGVIEW, TX 75603": 975,
-    "LOS ANGELES 90001": 1525,
-    "LOUISVILLE (KY) 40272": 900,
-    "LUFKIN, TX 75904": 975,
-    "LUMBERTON, NC 28360": 900,
-    "LYMAN 04002": 900,
-    "MACON (GA) 31008": 900,
-    "MADISON SOUTH (WI) 53558": 1025,
-    "MADISON (WI) 53718": 1025,
-    "MARTINEZ 94553": 1525,
-    "MCALLEN, TX 78570": 975,
-    "MEBANE 27302": 900,
-    "MEMPHIS 38118": 900,
-    "Mentone (CA) 92359": 1525,
-    "MIAMI CENTRAL 33167": 900,
-    "MIAMI NORTH 33054": 900, 
-    "MIAMI SOUTH 33032": 900,
-"MILWAUKEE 53110": 1025,
-"MILWAUKEE NORTH (WI) 53224": 1025,
-"Milwaukee South (WI) 53132": 1025,
-"MINNEAPOLIS 55421": 1025,
-"MINNEAPOLIS NORTH 55304": 1025,
-"MOBILE (AL) 36613": 900,
-"MOBILE SOUTH (AL) 36582": 900,
-"MOCKSVILLE, NC 27028": 900,
-"MONTGOMERY 36116": 900,
-"Napa, CA 94503": 1525,
-"NASHVILLE 37090": 900,
-"NEWBURGH/Marlboro 12542": 900,
-"NEW ORLEANS 70129": 975,
-"NORTH AUSTIN, TX 76574": 975,
-"NORTH BOSTON 01862": 900,
-"NORTH CHARLESTON (SC) 29448": 900,
-"NORTH SEATTLE 98223": 1525,
-"OCALA 34482": 900,
-"OGDEN (UT) 84404": 1525,
-"OKLAHOMA CITY 73129": 975,
-"ORLANDO (FL) 32822": 900,
-"ORLANDO NORTH (FL)": 900,
-"ORLANDO SOUTH (FL) 32824": 900,
-"PASCO (WA) 99301": 1525,
-"PEORIA (IL) 61554": 1025,
-"PHILADELPHIA EAST (PA) 18914": 900,
-"PHILADELPHIA (PA) 18073": 900,
-"PHOENIX (AZ) 85043": 1525,
-"PHOENIX NORTH (AZ) 85085": 1525,
-"PITTSBURGH EAST (PA) 15611": 900,
-"PITTSBURGH NORTH (PA) 16117": 900,
-"PITTSBURGH WEST (PA) 15122": 900,
-"PITTSBURGH SOUTH (PA) 15122": 900,
-"PORTLAND NORTH (OR) 97218": 1525,
-"PORTLAND SOUTH (OR) 97071": 1525,
-"PUNTA GORDA (FL) 33982": 900,
-"Punta Gorda South (FL) 34269": 900,
-"RALEIGH (NC) 28334": 900,
-"RALEIGH NORTH (NC) 27545": 900,
-"RANCHO CUCAMONGA (CA) 91739": 1525,
-"REDDING (CA) 96007": 1525,
-"RENO (NV) 89506": 1525,
-"RICHMOND EAST (VA) 23030": 900,
-"RICHMOND (VA) 23150": 900,
-"ROCHESTER (NY) 14482": 900,
-"RUTLAND (VT) 06736": 900,
-"Rapid City": 1025,
-"SACRAMENTO (CA) 95828": 1525,
-"SALT LAKE CITY (UT) 84044": 1525,
-"SALT LAKE CITY (UT) 84054": 1525,
-"SAN ANTONIO (TX) 78224": 975,
-"SAN BERNARDINO (CA) 92324": 1525,
-"SAN DIEGO (CA) 92154": 870,
-"SAN JOSE (CA) 95046": 870,
-"SAVANNAH (GA) 31405": 870,
-"SCRANTON (PA) 18642": 870,
-"SHREVEPORT (LA) 71109": 870,
-"SIKESTON (MO) 63801": 870,
-"SO SACRAMENTO 95828": 870,
-"SO SACRAMENTO (CA) 95828": 870,
-"SALT LAKE CITY (UT) 84044": 960,
-"SALT LAKE CITY (UT) 84054": 960,
-"SAN ANTONIO (TX) 78224": 925,
-"SAN BERNARDINO (CA) 92324": 1025,
-"SAN DIEGO (CA) 92154": 1525,
-"SAN JOSE (CA) 95046": 1525,
-"SAVANNAH (GA) 31405": 900,
-"SCRANTON (PA) 18642": 900,
-"SEAFORD (DE) 19973": 900,
-"SHREVEPORT (LA) 71109": 975,
-"SIKESTON (MO) 63801": 1025,
-"SOMERVILLE (NJ) 08844": 900,
-"SO SACRAMENTO 95828": 1525,
-"SO SACRAMENTO (CA) 95828": 1525,
-"SOUTH BOSTON (MA) 01756": 900,
-"SOUTHERN ILLINOIS (IL) 62207": 1025,
-"SPARTANBURG (SC) 29301": 900,
-"SPOKANE (WA) 99001": 1525,
-"SPRINGFIELD (MO) 65742": 1025,
-"ST.CLOUD (MN) 56310": 1025,
-"ST.LOUIS (MO) 63044": 1025,
-"SUN VALLEY (CA) 91352": 1525,
-"SYRACUSE (NY) 13036": 900,
-"TALLAHASSEE (FL) 32343": 900,
-"TAMPA SOUTH (FL) 33578": 900,
-"TANNER (AL) 35671": 900,
-"TIFTON (GA) 31794": 900,
-"TRENTON (NJ) 08561": 900,
-"TUCSON (AZ) 85706": 1525,
-"TULSA (OK) 74107": 975,
-"VALLEJO (CA) 94590": 1525,
-"VAN NUYS (CA) 91405": 1525,
-"WACO (TX) 76501": 975,
-"WALTON (KY) 41094": 900,
-"WASHINGTON (DC) 20602": 900,
-"WAYLAND (MI) 49348": 1025,
-"WEST PALM BEACH (FL) 33411": 900,
-"WEST WARREN (MA) 01092": 900,
-"WHEELING (IL) 60090": 1025,
-"WICHITA (KS) 67216": 975,
-"WINDHAM, ME 04062": 900,
-"YORK HAVEN (PA) 17370":900
+         "ABILENE, TX 79601": {
+        Sedan: 975,
+        SUV: 1200,
+        Fast: 1300,
+        Oversize: 1650
+    },
+        "ADELANTO (CA) 92301": {
+        Sedan: 1525,
+        SUV: 1900,
+        Fast: 2000,
+        Oversize: 2750
+    },
+         "AKRON (OH) 44203": {
+        Sedan: 900,
+        SUV: 1100,
+        Fast: 1200,
+        Oversize: 1500
+    },
+        "ALBANY 12205": {
+        Sedan: 900,
+        SUV: 1100,
+        Fast: 1200,
+        Oversize: 1500
+    },
+      "ALBUQUERQUE 87105": {
+        Sedan: 975,
+        SUV: 1200,
+        Fast: 1300,
+        Oversize: 1650
+    },
+     "ALTOONA 15931": {
+        Sedan: 900,
+        SUV: 1100,
+        Fast: 1200,
+        Oversize: 1500
+    },
+       "AMARILLO, TX 79118": {
+        Sedan: 975,
+        SUV: 975,
+        Fast: 975,
+        Oversize: 975
+    },
+    "ANCHORAGE 99501": {
+        Sedan: 1525,
+        SUV: 1525,
+        Fast: 1525,
+        Oversize: 1525
+    },
+    "ANDREWS, TX 79714": {
+        Sedan: 975,
+        SUV: 975,
+        Fast: 975,
+        Oversize: 975
+    },
+    "ANTELOPE 95843": {
+        Sedan: 1525,
+        SUV: 1525,
+        Fast: 1525,
+        Oversize: 1525
+    },
+    "APPLETON, WI 54914": {
+        Sedan: 1025,
+        SUV: 1025,
+        Fast: 1025,
+        Oversize: 1025
+    },
+    "ATLANTA EAST 30052": {
+        Sedan: 900,
+        SUV: 900,
+        Fast: 900,
+        Oversize: 900
+    },
+    "ATLANTA NORTH 30507": {
+        Sedan: 900,
+        SUV: 900,
+        Fast: 900,
+        Oversize: 900
+    },
+    "ATLANTA SOUTH 30294": {
+        Sedan: 900,
+        SUV: 900,
+        Fast: 900,
+        Oversize: 900
+    },
+    "ATLANTA WEST 30168": {
+        Sedan: 900,
+        SUV: 900,
+        Fast: 900,
+        Oversize: 900
+    },
+    "AUGUSTA, GA 30906": {
+        Sedan: 900,
+        SUV: 900,
+        Fast: 900,
+        Oversize: 900
+    },
+    "AUSTIN, TX 78130": {
+        Sedan: 975,
+        SUV: 975,
+        Fast: 975,
+        Oversize: 975
+    },
+       "BAKERSFIELD 93307": {
+        Sedan: 1525,
+        SUV: 1525,
+        Fast: 1525,
+        Oversize: 1525
+    },
+    "BALTIMORE 21048": {
+        Sedan: 900,
+        SUV: 900,
+        Fast: 900,
+        Oversize: 900
+    },
+    "BALTIMORE EAST 21225": {
+        Sedan: 900,
+        SUV: 900,
+        Fast: 900,
+        Oversize: 900
+    },
+    "BATON ROUGE 70739": {
+        Sedan: 975,
+        SUV: 975,
+        Fast: 975,
+        Oversize: 975
+    },
+    "BILLINGS 59103": {
+        Sedan: 1025,
+        SUV: 1025,
+        Fast: 1025,
+        Oversize: 1025
+    },
+    "BIRMINGHAM 35023": {
+        Sedan: 900,
+        SUV: 900,
+        Fast: 900,
+        Oversize: 900
+    },
+    "BISMARCK (ND) 58501": {
+        Sedan: 1025,
+        SUV: 1025,
+        Fast: 1025,
+        Oversize: 1025
+    },
+    "BOISE 83687": {
+        Sedan: 1525,
+        SUV: 1525,
+        Fast: 1525,
+        Oversize: 1525
+    },
+    "BUFFALO, NY 14006": {
+        Sedan: 900,
+        SUV: 900,
+        Fast: 900,
+        Oversize: 900
+    },
+    "CANDIA NH 03034": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+    "CARTERSVILLE 30120": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+    "CASPER, WY 82604": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+    "CHAMBERSBURG 17201": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+    "CHARLESTON/Hurricane 25526": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+    "CHICAGO NORTH 60120": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+    "CHICAGO SOUTH 60411": { Sedan: 570, SUV: 570, Fast: 570, Oversize: 570 },
+    "CHINA GROVE 28023": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+    "CICERO, IN 46034": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+    "CLEVELAND EAST 44067": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+    "CLEVELAND WEST 44028": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+    "COLORADO SPRINGS, CO": { Sedan: 975, SUV: 975, Fast: 975, Oversize: 975 },
+    "COLUMBIA MO 65201": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+    "COLUMBIA SC 29053": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+    "COLUMBUS (OH) 43207": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+    "CONCORD NC (28025)": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+    "CORPUS CHRISTI, TX 78405": { Sedan: 975, SUV: 975, Fast: 975, Oversize: 975 },
+    "CRASHEDTOYS ATLANTA 30344": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+    "CRASHEDTOYS DALLAS": { Sedan: 975, SUV: 975, Fast: 975, Oversize: 975 },
+    "CRASHEDTOYS EAST BETHEL, MN 55011": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+    "CRASHEDTOYS ELDRIDGE (IA) 52748": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+    "CRASHEDTOYS Memphis 38118": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+    "CRASHEDTOYS MINNEAPOLIS 55434": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+    "CRASHEDTOYS SACRAMENTO, CA": { Sedan: 1525, SUV: 1525, Fast: 1525, Oversize: 1525 },
+"DALLAS SOUTH 75172": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+  "DALLAS, TX 75051": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+  "DANVILLE 24531": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "DAVENPORT (IA) 52748": {
+    Sedan: 1025,
+    SUV: 1025,
+    Fast: 1025,
+    Oversize: 1025
+  },
+  "DAYTON, OH 45439": {
+    Sedan: 1025,
+    SUV: 1025,
+    Fast: 1025,
+    Oversize: 1025
+  },
+  "DENVER/Brighton 80603": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+  "DENVER CENTRAL, CO 80229": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+  "DENVER SOUTH (CO) 80125": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+  "DES MOINES (IA) 50317": {
+    Sedan: 1025,
+    SUV: 1025,
+    Fast: 1025,
+    Oversize: 1025
+  },
+  "DETROIT 48183": {
+    Sedan: 1025,
+    SUV: 1025,
+    Fast: 1025,
+    Oversize: 1025
+  },
+  "DOTHAN 36352": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "DYER (IN) 46311": {
+    Sedan: 1025,
+    SUV: 1025,
+    Fast: 1025,
+    Oversize: 1025
+  },
+"EARLINGTON (KY) 42410": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "EL PASO, TX 79821": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+  "EUGENE 97402": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "EXETER, RI 02822": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+"FAIRBURN (GA) 30213": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "FAYETTEVILLE (AR) 72753": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+  "FLINT 48423": {
+    Sedan: 1025,
+    SUV: 1025,
+    Fast: 1025,
+    Oversize: 1025
+  },
+  "FORT WAYNE 46803": {
+    Sedan: 1025,
+    SUV: 1025,
+    Fast: 1025,
+    Oversize: 1025
+  },
+  "FREDERICKSBURG (VA) 22408": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "FREETOWN, MA 02702": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "FRESNO 93725": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "FT. PIERCE 34946": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "FT. WORTH, TX 76052": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+    "GASTONIA 28052": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "GLASSBORO EAST 08028": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "GLASSBORO WEST 08028": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "GRAHAM 98338": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "Grenada, MS 38901": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+    "HAMMOND 46320": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+    "HAMPTON,VA 23666": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+    "HARRISBURG 17028": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+    "HARTFORD 06051": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+    "HARTFORD SPRINGFIELD 06026": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+    "HAYWARD 94545": { Sedan: 1525, SUV: 1525, Fast: 1525, Oversize: 1525 },
+    "HAYWARD - DESERT VIEW": { Sedan: 1525, SUV: 1525, Fast: 1525, Oversize: 1525 },
+    "HELENA 59601": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+    "HONOLULU (KAHALUI, MAUI ISLAND) 96740": { Sedan: 1525, SUV: 1525, Fast: 1525, Oversize: 1525 },
+    "HONOLULU (KAILUA-KONA, HAWAII ISLAND) 96707": { Sedan: 1525, SUV: 1525, Fast: 1525, Oversize: 1525 },
+    "HONOLULU (KAPOLEI, OAHU ISLAND) 96766": { Sedan: 1525, SUV: 1525, Fast: 1525, Oversize: 1525 },
+    "HONOLULU (LIHUE, KAUAI ISLAND) 96766": { Sedan: 1525, SUV: 1525, Fast: 1525, Oversize: 1525 },
+    "HOUSTON 77073": { Sedan: 975, SUV: 975, Fast: 975, Oversize: 975 },
+    "HOUSTON EAST": { Sedan: 975, SUV: 975, Fast: 975, Oversize: 975 },
+    "INDIANAPOLIS 46254": {
+        Sedan: 1025,
+        SUV: 1025,
+        Fast: 1025,
+        Oversize: 1025
+    },
+    "IONIA, MI 48875": {
+        Sedan: 1025,
+        SUV: 1025,
+        Fast: 1025,
+        Oversize: 1025
+    },
+   "JACKSON 39073": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+  "JACKSONVILLE EAST 32209": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "JACKSONVILLE NORTH 32218": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "JACKSONVILLE WEST 32220": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+    "KANSAS CITY 66111": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+  "KINCHLOE (MI) 49788": {
+    Sedan: 1025,
+    SUV: 1025,
+    Fast: 1025,
+    Oversize: 1025
+  },
+  "KNOXVILLE 37354": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+    "LANSING 48917": {
+    Sedan: 1025,
+    SUV: 1025,
+    Fast: 1025,
+    Oversize: 1025
+  },
+  "LAS VEGAS 89115": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "LAS VEGAS WEST (NV) 89032": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "LEXINGTON EAST 40509": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "LEXINGTON WEST 40342": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "LINCOLN 68366": {
+    Sedan: 1025,
+    SUV: 1025,
+    Fast: 1025,
+    Oversize: 1025
+  },
+  "LITTLE ROCK 72032": {
+    Sedan: 825,
+    SUV: 825,
+    Fast: 825,
+    Oversize: 825
+  },
+  "LONG BEACH (CA) 90744": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "LONG ISLAND 11719": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "LONGVIEW, TX 75603": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+  "LOS ANGELES 90001": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "LOUISVILLE (KY) 40272": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "LUFKIN, TX 75904": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+  "LUMBERTON, NC 28360": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "LYMAN 04002": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+     "MACON (GA) 31008": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+  "MADISON SOUTH (WI) 53558": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+  "MADISON (WI) 53718": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+  "MARTINEZ 94553": { Sedan: 1525, SUV: 1525, Fast: 1525, Oversize: 1525 },
+  "MCALLEN, TX 78570": { Sedan: 975, SUV: 975, Fast: 975, Oversize: 975 },
+  "MEBANE 27302": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+  "MEMPHIS 38118": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+  "Mentone (CA) 92359": { Sedan: 1525, SUV: 1525, Fast: 1525, Oversize: 1525 },
+  "MIAMI CENTRAL 33167": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+  "MIAMI NORTH 33054": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+  "MIAMI SOUTH 33032": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+  "MILWAUKEE 53110": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+  "MILWAUKEE NORTH (WI) 53224": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+  "Milwaukee South (WI) 53132": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+  "MINNEAPOLIS 55421": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+  "MINNEAPOLIS NORTH 55304": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+  "MOBILE (AL) 36613": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+  "MOBILE SOUTH (AL) 36582": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+  "MOCKSVILLE, NC 27028": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+  "MONTGOMERY 36116": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+"Napa, CA 94503": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "NASHVILLE 37090": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "NEWBURGH/Marlboro 12542": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "NEW ORLEANS 70129": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+  "NORTH AUSTIN, TX 76574": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+  "NORTH BOSTON 01862": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "NORTH CHARLESTON (SC) 29448": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "NORTH SEATTLE 98223": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+"OCALA 34482": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "OGDEN (UT) 84404": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "OKLAHOMA CITY 73129": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+  "ORLANDO (FL) 32822": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "ORLANDO NORTH (FL)": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "ORLANDO SOUTH (FL) 32824": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+"PASCO (WA) 99301": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "PEORIA (IL) 61554": {
+    Sedan: 1025,
+    SUV: 1025,
+    Fast: 1025,
+    Oversize: 1025
+  },
+  "PHILADELPHIA EAST (PA) 18914": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "PHILADELPHIA (PA) 18073": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "PHOENIX (AZ) 85043": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "PHOENIX NORTH (AZ) 85085": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "PITTSBURGH EAST (PA) 15611": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "PITTSBURGH NORTH (PA) 16117": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "PITTSBURGH WEST (PA) 15122": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "PITTSBURGH SOUTH (PA) 15122": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "PORTLAND NORTH (OR) 97218": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "PORTLAND SOUTH (OR) 97071": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "PUNTA GORDA (FL) 33982": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "Punta Gorda South (FL) 34269": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+"RALEIGH (NC) 28334": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "RALEIGH NORTH (NC) 27545": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "RANCHO CUCAMONGA (CA) 91739": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "REDDING (CA) 96007": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "RENO (NV) 89506": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "RICHMOND EAST (VA) 23030": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "RICHMOND (VA) 23150": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "ROCHESTER (NY) 14482": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "RUTLAND (VT) 06736": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "Rapid City": {
+    Sedan: 1025,
+    SUV: 1025,
+    Fast: 1025,
+    Oversize: 1025
+  },
+"SACRAMENTO (CA) 95828": {
+    Sedan: 690,
+    SUV: 690,
+    Fast: 690,
+    Oversize: 690
+  },
+  "SALT LAKE CITY (UT) 84044": {
+    Sedan: 825,
+    SUV: 825,
+    Fast: 825,
+    Oversize: 825
+  },
+  "SALT LAKE CITY (UT) 84054": {
+    Sedan: 825,
+    SUV: 825,
+    Fast: 825,
+    Oversize: 825
+  },
+  "SAN ANTONIO (TX) 78224": {
+    Sedan: 600,
+    SUV: 600,
+    Fast: 600,
+    Oversize: 600
+  },
+  "SAN BERNARDINO (CA) 92324": {
+    Sedan: 500,
+    SUV: 500,
+    Fast: 500,
+    Oversize: 500
+  },
+  "SAN DIEGO (CA) 92154": {
+    Sedan: 550,
+    SUV: 550,
+    Fast: 550,
+    Oversize: 550
+  },
+  "SAN JOSE (CA) 95046": {
+    Sedan: 870,
+    SUV: 870,
+    Fast: 870,
+    Oversize: 870
+  },
+  "SAVANNAH (GA) 31405": {
+    Sedan: 870,
+    SUV: 870,
+    Fast: 870,
+    Oversize: 870
+  },
+  "SCRANTON (PA) 18642": {
+    Sedan: 870,
+    SUV: 870,
+    Fast: 870,
+    Oversize: 870
+  },
+  "SHREVEPORT (LA) 71109": {
+    Sedan: 870,
+    SUV: 870,
+    Fast: 870,
+    Oversize: 870
+  },
+  "SIKESTON (MO) 63801": {
+    Sedan: 870,
+    SUV: 870,
+    Fast: 870,
+    Oversize: 870
+  },
+  "SO SACRAMENTO 95828": {
+    Sedan: 870,
+    SUV: 870,
+    Fast: 870,
+    Oversize: 870
+  },
+  "SO SACRAMENTO (CA) 95828": {
+    Sedan: 870,
+    SUV: 870,
+    Fast: 870,
+    Oversize: 870
+  },
+  "SALT LAKE CITY (UT) 84044": {
+    Sedan: 960,
+    SUV: 960,
+    Fast: 960,
+    Oversize: 960
+  },
+  "SALT LAKE CITY (UT) 84054": {
+    Sedan: 960,
+    SUV: 960,
+    Fast: 960,
+    Oversize: 960
+  },
+  "SAN ANTONIO (TX) 78224": {
+    Sedan: 925,
+    SUV: 925,
+    Fast: 925,
+    Oversize: 925
+  },
+  "SAN BERNARDINO (CA) 92324": {
+    Sedan: 1025,
+    SUV: 1025,
+    Fast: 1025,
+    Oversize: 1025
+  },
+  "SAN DIEGO (CA) 92154": {
+    Sedan: 1010,
+    SUV: 1010,
+    Fast: 1010,
+    Oversize: 1010
+  },
+  "SAN JOSE (CA) 95046": {
+    Sedan: 690,
+    SUV: 690,
+    Fast: 690,
+    Oversize: 690
+  },
+  "SAVANNAH (GA) 31405": {
+    Sedan: 450,
+    SUV: 450,
+    Fast: 450,
+    Oversize: 450
+  },
+  "SCRANTON (PA) 18642": {
+    Sedan: 575,
+    SUV: 575,
+    Fast: 575,
+    Oversize: 575
+  },
+  "SEAFORD (DE) 19973": {
+    Sedan: 590,
+    SUV: 590,
+    Fast: 590,
+    Oversize: 590
+  },
+  "SHREVEPORT (LA) 71109": {
+    Sedan: 675,
+    SUV: 675,
+    Fast: 675,
+    Oversize: 675
+  },
+  "SIKESTON (MO) 63801": {
+    Sedan: 800,
+    SUV: 800,
+    Fast: 800,
+    Oversize: 800
+  },
+  "SOMERVILLE (NJ) 08844": {
+    Sedan: 480,
+    SUV: 480,
+    Fast: 480,
+    Oversize: 480
+  },
+  "SO SACRAMENTO 95828": {
+    Sedan: 690,
+    SUV: 690,
+    Fast: 690,
+    Oversize: 690
+  },
+  "SO SACRAMENTO (CA) 95828": {
+    Sedan: 690,
+    SUV: 690,
+    Fast: 690,
+    Oversize: 690
+  },
+  "SOUTH BOSTON (MA) 01756": {
+    Sedan: 650,
+    SUV: 650,
+    Fast: 650,
+    Oversize: 650
+  },
+  "SOUTHERN ILLINOIS (IL) 62207": {
+    Sedan: 596,
+    SUV: 596,
+    Fast: 596,
+    Oversize: 596
+  },
+  "SPARTANBURG (SC) 29301": {
+    Sedan: 575,
+    SUV: 575,
+    Fast: 575,
+    Oversize: 575
+  },
+  "SPOKANE (WA) 99001": {
+    Sedan: 1125,
+    SUV: 1125,
+    Fast: 1125,
+    Oversize: 1125
+  },
+  "SPRINGFIELD (MO) 65742": {
+    Sedan: 750,
+    SUV: 750,
+    Fast: 750,
+    Oversize: 750
+  },
+  "ST.CLOUD (MN) 56310": {
+    Sedan: 790,
+    SUV: 790,
+    Fast: 790,
+    Oversize: 790
+  },
+  "ST.LOUIS (MO) 63044": {
+    Sedan: 690,
+    SUV: 690,
+    Fast: 690,
+    Oversize: 690
+  },
+  "SUN VALLEY (CA) 91352": {
+    Sedan: 530,
+    SUV: 530,
+    Fast: 530,
+    Oversize: 530
+  },
+"SYRACUSE (NY) 13036": {
+    Sedan: 625,
+    SUV: 625,
+    Fast: 625,
+    Oversize: 625
+  },
+"TALLAHASSEE (FL) 32343": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "TAMPA SOUTH (FL) 33578": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "TANNER (AL) 35671": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "TIFTON (GA) 31794": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "TRENTON (NJ) 08561": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "TUCSON (AZ) 85706": {
+    Sedan: 1525,
+    SUV: 1525,
+    Fast: 1525,
+    Oversize: 1525
+  },
+  "TULSA (OK) 74107": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+ "VALLEJO (CA) 94590": { Sedan: 1525, SUV: 1525, Fast: 1525, Oversize: 1525 },
+  "VAN NUYS (CA) 91405": { Sedan: 1525, SUV: 1525, Fast: 1525, Oversize: 1525 },
+  "WACO (TX) 76501": { Sedan: 975, SUV: 975, Fast: 975, Oversize: 975 },
+  "WALTON (KY) 41094": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+  "WASHINGTON (DC) 20602": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+  "WAYLAND (MI) 49348": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+  "WEST PALM BEACH (FL) 33411": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+  "WEST WARREN (MA) 01092": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+  "WHEELING (IL) 60090": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+  "WICHITA (KS) 67216": { Sedan: 975, SUV: 975, Fast: 975, Oversize: 975 },
+  "WINDHAM, ME 04062": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 },
+  "YORK HAVEN (PA) 17370": { Sedan: 900, SUV: 900, Fast: 900, Oversize: 900 }
     };
     
     const land_costs = {
-        "ABILENE, TX 79601": 725,
-        "ADELANTO (CA) 92301": 550,
-        "AKRON (OH) 44203": 790,
-        "ALBANY 12205": 575,
-        "ALBUQUERQUE 87105": 920,
-        "ALTOONA 15931": 750,
-        "AMARILLO, TX 79118": 825,
-        "ANCHORAGE 99501": 3000,
-        "ANDREWS, TX 79714": 775,
-        "ANTELOPE 95843": 690,
-        "APPLETON, WI 54914": 740,
-        "ATLANTA EAST 30052": 600,
-        "ATLANTA NORTH 30507": 625,
-        "ATLANTA SOUTH 30294": 625,
-        "ATLANTA WEST 30168": 625,
-        "AUGUSTA, GA 30906": 575,
-        "AUSTIN, TX 78130": 600,
-        "BAKERSFIELD 93307": 595,
-        "BALTIMORE 21048": 600,
-        "BALTIMORE EAST 21225": 625,
-        "BATON ROUGE 70739": 700,
-        "BILLINGS 59103": 1450,
-        "BIRMINGHAM 35023": 675,
-        "BISMARCK (ND) 58501": 1250,
-        "BOISE 83687": 1170,
-        "BUFFALO, NY 14006": 800,
-        "CANDIA NH 03034": 650,
-        "CARTERSVILLE 30120": 625,
-        "CASPER, WY 82604": 1390,
-        "CHAMBERSBURG 17201": 650,
-        "CHARLESTON/Hurricane 25526": 825,
-        "CHICAGO NORTH 60120": 570,
-        "CHICAGO SOUTH 60411": 570,
-"CHINA GROVE 28023": 590,
-"CICERO, IN 46034": 375,
-"CLEVELAND EAST 44067": 775,
-"CLEVELAND WEST 44028": 775,
-"COLORADO SPRINGS, CO": 1025,
-"COLUMBIA MO 65201": 750,
-"COLUMBIA SC 29053": 525,
-"COLUMBUS (OH) 43207": 575,
-"CONCORD NC (28025)": 600,
-"CORPUS CHRISTI, TX 78405": 625,
-"CRASHEDTOYS ATLANTA 30344": 625,
-"CRASHEDTOYS DALLAS": 755,
-"CRASHEDTOYS EAST BETHEL, MN 55011": 950,
-"CRASHEDTOYS ELDRIDGE (IA) 52748": 750,
-"CRASHEDTOYS Memphis 38118": 780,
-"CRASHEDTOYS MINNEAPOLIS 55434": 790,
-"CRASHEDTOYS SACRAMENTO, CA": 690,
-"DALLAS SOUTH 75172": 625,
-"DALLAS, TX 75051": 625,
-"DANVILLE 24531": 700,
-"DAVENPORT (IA) 52748": 750,
-"DAYTON, OH 45439": 570,
-"DENVER/Brighton 80603": 975,
-"DENVER CENTRAL, CO 80229": 975,
-"DENVER SOUTH (CO) 80125": 975,
-"DES MOINES (IA) 50317": 750,
-"DETROIT 48183": 760,
-"DOTHAN 36352": 675,
-"DYER (IN) 46311": 550,
-"EARLINGTON (KY) 42410": 815,
-"EL PASO, TX 79821": 750,
-"EUGENE 97402": 970,
-"EXETER, RI 02822": 650,
-    "FAIRBURN (GA) 30213": 650,
-    "FAYETTEVILLE (AR) 72753": 825,
-    "FLINT 48423": 750,
-    "FORT WAYNE 46803": 525,
-    "FREDERICKSBURG (VA) 22408": 650,
-    "FREETOWN, MA 02702": 650,
-    "FRESNO 93725": 600,
-    "FT. PIERCE 34946": 650,
-    "FT. WORTH, TX 76052": 600,
-    "GASTONIA 28052": 600,
-    "GLASSBORO EAST 08028": 510,
-    "GLASSBORO WEST 08028": 510,
-    "GRAHAM 98338": 1050,
-    "Grenada, MS 38901": 825,
-    "HAMMOND 46320": 550,
-    "HAMPTON,VA 23666": 675,
-    "HARRISBURG 17028": 575,
-    "HARTFORD 06051": 525,
-    "HARTFORD SPRINGFIELD 06026": 525,
-    "HAYWARD 94545": 690,
-    "HAYWARD - DESERT VIEW": 690,
-    "HELENA 59601": 1450,
-    "HONOLULU (KAHALUI, MAUI ISLAND) 96740": 2800,
-    "HONOLULU (KAILUA-KONA, HAWAII ISLAND) 96707": 2900,
-    "HONOLULU (KAPOLEI, OAHU ISLAND) 96766": 2400,
-    "HONOLULU (LIHUE, KAUAI ISLAND) 96766": 3675,
-    "HOUSTON 77073": 475,
-    "HOUSTON EAST": 475,
-    "INDIANAPOLIS 46254": 450,
-    "IONIA, MI 48875": 760,
-    "JACKSON 39073": 825,
-    "JACKSONVILLE EAST 32209": 525,
-    "JACKSONVILLE NORTH 32218": 525,
-    "JACKSONVILLE WEST 32220": 525,
-    "KANSAS CITY 66111": 925,
-    "KINCHLOE (MI) 49788": 1125,
-    "KNOXVILLE 37354": 700,
-    "LANSING 48917": 760,
-    "LAS VEGAS 89115": 620,
-    "LAS VEGAS WEST (NV) 89032": 625,
-    "LEXINGTON EAST 40509": 815,
-    "LEXINGTON WEST 40342": 815,
-    "LINCOLN 68366": 825,
-    "LITTLE ROCK 72032": 825,
-    "LONG BEACH (CA) 90744": 415,
-    "LONG ISLAND 11719": 550,
-    "LONGVIEW, TX 75603": 625,
-    "LOS ANGELES 90001": 450,
-    "LOUISVILLE (KY) 40272": 815,
-    "LUFKIN, TX 75904": 575,
-    "LUMBERTON, NC 28360": 600,
-    "LYMAN 04002": 725,
-    "MACON (GA) 31008": 550,
-    "MADISON SOUTH (WI) 53558": 675,
-    "MADISON (WI) 53718": 675,
-    "MARTINEZ 94553": 690,
-    "MCALLEN, TX 78570": 650,
-    "MEBANE 27302": 600,
-    "MEMPHIS 38118": 780,
-    "Mentone (CA) 92359": 540,
-    "MIAMI CENTRAL 33167": 650,
-    "MIAMI NORTH 33054": 650,
-    "MIAMI SOUTH 33032": 670,
-"MILWAUKEE 53110": 690,
-"MILWAUKEE NORTH (WI) 53224": 690,
-"Milwaukee South (WI) 53132": 690,
-"MINNEAPOLIS 55421": 790,
-"MINNEAPOLIS NORTH 55304": 790,
-"MOBILE (AL) 36613": 675,
-"MOBILE SOUTH (AL) 36582": 675,
-"MOCKSVILLE, NC 27028": 600,
-"MONTGOMERY 36116": 695,
-"Napa, CA 94503": 750,
-"NASHVILLE 37090": 725,
-"NEWBURGH/Marlboro 12542": 550,
-"NEW ORLEANS 70129": 700,
-"NORTH AUSTIN, TX 76574": 600,
-"NORTH BOSTON 01862": 650,
-"NORTH CHARLESTON (SC) 29448": 525,
-"NORTH SEATTLE 98223": 1150,
-"OCALA 34482": 600,
-"OGDEN (UT) 84404": 825,
-"OKLAHOMA CITY 73129": 775,
-"ORLANDO (FL) 32822": 590,
-"ORLANDO NORTH (FL)": 590,
-"ORLANDO SOUTH (FL) 32824": 590,
-"PASCO (WA) 99301": 1125,
-"PEORIA (IL) 61554": 625,
-"PHILADELPHIA EAST (PA) 18914": 540,
-"PHILADELPHIA (PA) 18073": 540,
-"PHOENIX (AZ) 85043": 600,
-"PHOENIX NORTH (AZ) 85085": 600,
-"PITTSBURGH EAST (PA) 15611": 750,
-"PITTSBURGH NORTH (PA) 16117": 750,
-"PITTSBURGH WEST (PA) 15122": 750,
-"PITTSBURGH SOUTH (PA) 15122": 750,
-"PORTLAND NORTH (OR) 97218": 950,
-"PORTLAND SOUTH (OR) 97071": 950,
-"PUNTA GORDA (FL) 33982": 625,
-"Punta Gorda South (FL) 34269": 650,
-"RALEIGH (NC) 28334": 590,
-"RALEIGH NORTH (NC) 27545": 590,
-"RANCHO CUCAMONGA (CA) 91739": 525,
-"REDDING (CA) 96007": 900,
-"RENO (NV) 89506": 800,
-"RICHMOND EAST (VA) 23030": 650,
-"RICHMOND (VA) 23150": 650,
-"ROCHESTER (NY) 14482":725,
-"RUTLAND (VT) 06736": 775,
-"Rapid City": 1100,
-"SACRAMENTO (CA) 95828": 690,
-"SALT LAKE CITY (UT) 84044": 825,
-"SALT LAKE CITY (UT) 84054": 825,
-"SAN ANTONIO (TX) 78224": 600,
-"SAN BERNARDINO (CA) 92324": 500,
-"SAN DIEGO (CA) 92154": 550,
-"SAN JOSE (CA) 95046": 870,
-"SAVANNAH (GA) 31405": 870,
-"SCRANTON (PA) 18642": 870,
-"SHREVEPORT (LA) 71109": 870,
-"SIKESTON (MO) 63801": 870,
-"SO SACRAMENTO 95828": 870,
-"SO SACRAMENTO (CA) 95828": 870,
-"SALT LAKE CITY (UT) 84044": 960,
-"SALT LAKE CITY (UT) 84054": 960,
-"SAN ANTONIO (TX) 78224": 925,
-"SAN BERNARDINO (CA) 92324": 1025,
-"SAN DIEGO (CA) 92154": 1010,
-"SAN JOSE (CA) 95046": 690,
-"SAVANNAH (GA) 31405": 450,
-"SCRANTON (PA) 18642": 575,
-"SEAFORD (DE) 19973": 590,
-"SHREVEPORT (LA) 71109": 675,
-"SIKESTON (MO) 63801": 800,
-"SOMERVILLE (NJ) 08844": 480,
-"SO SACRAMENTO 95828": 690,
-"SO SACRAMENTO (CA) 95828": 690,
-"SOUTH BOSTON (MA) 01756": 650,
-"SOUTHERN ILLINOIS (IL) 62207": 596,
-"SPARTANBURG (SC) 29301": 575,
-"SPOKANE (WA) 99001": 1125,
-"SPRINGFIELD (MO) 65742": 750,
-"ST.CLOUD (MN) 56310": 790,
-"ST.LOUIS (MO) 63044": 690,
-"SUN VALLEY (CA) 91352": 530,
-"SYRACUSE (NY) 13036": 625,
-"TALLAHASSEE (FL) 32343": 625,
-"TAMPA SOUTH (FL) 33578": 625,
-"TANNER (AL) 35671": 695,
-"TIFTON (GA) 31794": 575,
-"TRENTON (NJ) 08561": 475,
-"TUCSON (AZ) 85706": 675,
-"TULSA (OK) 74107": 825,
-"VALLEJO (CA) 94590": 690,
-"VAN NUYS (CA) 91405": 525,
-"WACO (TX) 76501": 590,
-"WALTON (KY) 41094": 815,
-"WASHINGTON (DC) 20602": 620,
-"WAYLAND (MI) 49348": 760,
-"WEST PALM BEACH (FL) 33411": 650,
-"WEST WARREN (MA) 01092": 650,
-"WHEELING (IL) 60090": 570,
-"WICHITA (KS) 67216": 875,
-"WINDHAM, ME 04062": 725,
-"YORK HAVEN (PA) 17370":575
+        "ABILENE, TX 79601": {
+        Sedan: 725,
+        SUV: 725,
+        Fast: 725,
+        Oversize: 1150
+    },
+        "ADELANTO (CA) 92301": {
+        Sedan: 550,
+        SUV: 550,
+        Fast: 550,
+        Oversize: 800
+    },
+        "AKRON (OH) 44203": {
+        Sedan: 790,
+        SUV: 790,
+        Fast: 790,
+        Oversize: 1280
+    },
+        "ALBANY 12205": {
+        Sedan: 575,
+        SUV: 575,
+        Fast: 575,
+        Oversize: 850
+    },
+     "ALBUQUERQUE 87105": {
+        Sedan: 920,
+        SUV: 920,
+        Fast: 920,
+        Oversize: 1540
+    },
+        "ALTOONA 15931": {
+        Sedan: 750,
+        SUV: 750,
+        Fast: 750,
+        Oversize: 1200
+    },
+       "AMARILLO, TX 79118": {
+        Sedan: 825,
+        SUV: 825,
+        Fast: 825,
+        Oversize: 825
+    },
+    "ANCHORAGE 99501": {
+        Sedan: 3000,
+        SUV: 3000,
+        Fast: 3000,
+        Oversize: 3000
+    },
+    "ANDREWS, TX 79714": {
+        Sedan: 775,
+        SUV: 775,
+        Fast: 775,
+        Oversize: 775
+    },
+    "ANTELOPE 95843": {
+        Sedan: 690,
+        SUV: 690,
+        Fast: 690,
+        Oversize: 690
+    },
+    "APPLETON, WI 54914": {
+        Sedan: 740,
+        SUV: 740,
+        Fast: 740,
+        Oversize: 740
+    },
+    "ATLANTA EAST 30052": {
+        Sedan: 600,
+        SUV: 600,
+        Fast: 600,
+        Oversize: 600
+    },
+    "ATLANTA NORTH 30507": {
+        Sedan: 625,
+        SUV: 625,
+        Fast: 625,
+        Oversize: 625
+    },
+    "ATLANTA SOUTH 30294": {
+        Sedan: 625,
+        SUV: 625,
+        Fast: 625,
+        Oversize: 625
+    },
+    "ATLANTA WEST 30168": {
+        Sedan: 625,
+        SUV: 625,
+        Fast: 625,
+        Oversize: 625
+    },
+    "AUGUSTA, GA 30906": {
+        Sedan: 575,
+        SUV: 575,
+        Fast: 575,
+        Oversize: 575
+    },
+    "AUSTIN, TX 78130": {
+        Sedan: 600,
+        SUV: 600,
+        Fast: 600,
+        Oversize: 600
+    },
+       "BAKERSFIELD 93307": {
+        Sedan: 595,
+        SUV: 595,
+        Fast: 595,
+        Oversize: 595
+    },
+    "BALTIMORE 21048": {
+        Sedan: 600,
+        SUV: 600,
+        Fast: 600,
+        Oversize: 600
+    },
+    "BALTIMORE EAST 21225": {
+        Sedan: 625,
+        SUV: 625,
+        Fast: 625,
+        Oversize": 625
+    },
+    "BATON ROUGE 70739": {
+        Sedan: 700,
+        SUV: 700,
+        Fast: 700,
+        Oversize: 700
+    },
+    "BILLINGS 59103": {
+        Sedan: 1450,
+        SUV: 1450,
+        Fast: 1450,
+        Oversize: 1450
+    },
+    "BIRMINGHAM 35023": {
+        Sedan: 675,
+        SUV: 675,
+        Fast: 675,
+        Oversize: 675
+    },
+    "BISMARCK (ND) 58501": {
+        Sedan: 1250,
+        SUV: 1250,
+        Fast: 1250,
+        Oversize: 1250
+    },
+    "BOISE 83687": {
+        Sedan: 1170,
+        SUV: 1170,
+        Fast: 1170,
+        Oversize: 1170
+    },
+    "BUFFALO, NY 14006": {
+        Sedan: 800,
+        SUV: 800,
+        Fast: 800,
+        Oversize: 800
+    },
+         "CANDIA NH 03034": { Sedan: 650, SUV: 650, Fast: 650, Oversize: 650 },
+    "CARTERSVILLE 30120": { Sedan: 625, SUV: 625, Fast: 625, Oversize: 625 },
+    "CASPER, WY 82604": { Sedan: 1390, SUV: 1390, Fast: 1390, Oversize: 1390 },
+    "CHAMBERSBURG 17201": { Sedan: 650, SUV: 650, Fast: 650, Oversize: 650 },
+    "CHARLESTON/Hurricane 25526": { Sedan: 825, SUV: 825, Fast: 825, Oversize: 825 },
+    "CHICAGO NORTH 60120": { Sedan: 570, SUV: 570, Fast: 570, Oversize: 570 },
+    "CHICAGO SOUTH 60411": { Sedan: 570, SUV: 570, Fast: 570, Oversize: 570 },
+    "CHINA GROVE 28023": { Sedan: 590, SUV: 590, Fast: 590, Oversize: 590 },
+    "CICERO, IN 46034": { Sedan: 375, SUV: 375, Fast: 375, Oversize: 375 },
+    "CLEVELAND EAST 44067": { Sedan: 775, SUV: 775, Fast: 775, Oversize: 775 },
+    "CLEVELAND WEST 44028": { Sedan: 775, SUV: 775, Fast: 775, Oversize: 775 },
+    "COLORADO SPRINGS, CO": { Sedan: 1025, SUV: 1025, Fast: 1025, Oversize: 1025 },
+    "COLUMBIA MO 65201": { Sedan: 750, SUV: 750, Fast: 750, Oversize: 750 },
+    "COLUMBIA SC 29053": { Sedan: 525, SUV: 525, Fast: 525, Oversize: 525 },
+    "COLUMBUS (OH) 43207": { Sedan: 575, SUV: 575, Fast: 575, Oversize: 575 },
+    "CONCORD NC (28025)": { Sedan: 600, SUV: 600, Fast: 600, Oversize: 600 },
+    "CORPUS CHRISTI, TX 78405": { Sedan: 625, SUV: 625, Fast: 625, Oversize: 625 },
+    "CRASHEDTOYS ATLANTA 30344": { Sedan: 625, SUV: 625, Fast: 625, Oversize: 625 },
+    "CRASHEDTOYS DALLAS": { Sedan: 755, SUV: 755, Fast: 755, Oversize: 755 },
+    "CRASHEDTOYS EAST BETHEL, MN 55011": { Sedan: 950, SUV: 950, Fast: 950, Oversize: 950 },
+    "CRASHEDTOYS ELDRIDGE (IA) 52748": { Sedan: 750, SUV: 750, Fast: 750, Oversize: 750 },
+    "CRASHEDTOYS Memphis 38118": { Sedan: 780, SUV: 780, Fast: 780, Oversize: 780 },
+    "CRASHEDTOYS MINNEAPOLIS 55434": { Sedan: 790, SUV: 790, Fast: 790, Oversize: 790 },
+    "CRASHEDTOYS SACRAMENTO, CA": { Sedan: 690, SUV: 690, Fast: 690, Oversize: 690 },
+ "DALLAS SOUTH 75172": {
+    Sedan: 625,
+    SUV: 625,
+    Fast: 625,
+    Oversize: 625
+  },
+  "DALLAS, TX 75051": {
+    Sedan: 625,
+    SUV: 625,
+    Fast: 625,
+    Oversize: 625
+  },
+  "DANVILLE 24531": {
+    Sedan: 700,
+    SUV: 700,
+    Fast: 700,
+    Oversize: 700
+  },
+  "DAVENPORT (IA) 52748": {
+    Sedan: 750,
+    SUV: 750,
+    Fast: 750,
+    Oversize: 750
+  },
+  "DAYTON, OH 45439": {
+    Sedan: 570,
+    SUV: 570,
+    Fast: 570,
+    Oversize: 570
+  },
+  "DENVER/Brighton 80603": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+  "DENVER CENTRAL, CO 80229": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+  "DENVER SOUTH (CO) 80125": {
+    Sedan: 975,
+    SUV: 975,
+    Fast: 975,
+    Oversize: 975
+  },
+  "DES MOINES (IA) 50317": {
+    Sedan: 750,
+    SUV: 750,
+    Fast: 750,
+    Oversize: 750
+  },
+  "DETROIT 48183": {
+    Sedan: 760,
+    SUV: 760,
+    Fast: 760,
+    Oversize: 760
+  },
+  "DOTHAN 36352": {
+    Sedan: 675,
+    SUV: 675,
+    Fast: 675,
+    Oversize: 675
+  },
+  "DYER (IN) 46311": {
+    Sedan: 550,
+    SUV: 550,
+    Fast: 550,
+    Oversize: 550
+  },
+ "EARLINGTON (KY) 42410": {
+    Sedan: 815,
+    SUV: 815,
+    Fast: 815,
+    Oversize: 815
+  },
+  "EL PASO, TX 79821": {
+    Sedan: 750,
+    SUV: 750,
+    Fast: 750,
+    Oversize: 750
+  },
+  "EUGENE 97402": {
+    Sedan: 970,
+    SUV: 970,
+    Fast: 970,
+    Oversize: 970
+  },
+  "EXETER, RI 02822": {
+    Sedan: 650,
+    SUV: 650,
+    Fast: 650,
+    Oversize: 650
+  },
+    "FAIRBURN (GA) 30213": {
+    Sedan: 650,
+    SUV: 650,
+    Fast: 650,
+    Oversize: 650
+  },
+  "FAYETTEVILLE (AR) 72753": {
+    Sedan: 825,
+    SUV: 825,
+    Fast: 825,
+    Oversize: 825
+  },
+  "FLINT 48423": {
+    Sedan: 750,
+    SUV: 750,
+    Fast: 750,
+    Oversize: 750
+  },
+  "FORT WAYNE 46803": {
+    Sedan: 525,
+    SUV: 525,
+    Fast: 525,
+    Oversize: 525
+  },
+  "FREDERICKSBURG (VA) 22408": {
+    Sedan: 650,
+    SUV: 650,
+    Fast: 650,
+    Oversize: 650
+  },
+  "FREETOWN, MA 02702": {
+    Sedan: 650,
+    SUV: 650,
+    Fast: 650,
+    Oversize: 650
+  },
+  "FRESNO 93725": {
+    Sedan: 600,
+    SUV: 600,
+    Fast: 600,
+    Oversize: 600
+  },
+  "FT. PIERCE 34946": {
+    Sedan: 650,
+    SUV: 650,
+    Fast: 650,
+    Oversize: 650
+  },
+  "FT. WORTH, TX 76052": {
+    Sedan: 600,
+    SUV: 600,
+    Fast: 600,
+    Oversize: 600
+  },
+    "GASTONIA 28052": {
+    Sedan: 600,
+    SUV: 600,
+    Fast: 600,
+    Oversize: 600
+  },
+  "GLASSBORO EAST 08028": {
+    Sedan: 510,
+    SUV: 510,
+    Fast: 510,
+    Oversize: 510
+  },
+  "GLASSBORO WEST 08028": {
+    Sedan: 510,
+    SUV: 510,
+    Fast: 510,
+    Oversize: 510
+  },
+  "GRAHAM 98338": {
+    Sedan: 1050,
+    SUV: 1050,
+    Fast: 1050,
+    Oversize: 1050
+  },
+  "Grenada, MS 38901": {
+    Sedan: 825,
+    SUV: 825,
+    Fast: 825,
+    Oversize: 825
+  },
+    "HAMMOND 46320": { Sedan: 550, SUV: 550, Fast: 550, Oversize: 550 },
+    "HAMPTON,VA 23666": { Sedan: 675, SUV: 675, Fast: 675, Oversize: 675 },
+    "HARRISBURG 17028": { Sedan: 575, SUV: 575, Fast: 575, Oversize: 575 },
+    "HARTFORD 06051": { Sedan: 525, SUV: 525, Fast: 525, Oversize: 525 },
+    "HARTFORD SPRINGFIELD 06026": { Sedan: 525, SUV: 525, Fast: 525, Oversize: 525 },
+    "HAYWARD 94545": { Sedan: 690, SUV: 690, Fast: 690, Oversize: 690 },
+    "HAYWARD - DESERT VIEW": { Sedan: 690, SUV: 690, Fast: 690, Oversize: 690 },
+    "HELENA 59601": { Sedan: 1450, SUV: 1450, Fast: 1450, Oversize: 1450 },
+    "HONOLULU (KAHALUI, MAUI ISLAND) 96740": { Sedan: 2800, SUV: 2800, Fast: 2800, Oversize: 2800 },
+    "HONOLULU (KAILUA-KONA, HAWAII ISLAND) 96707": { Sedan: 2900, SUV: 2900, Fast: 2900, Oversize: 2900 },
+    "HONOLULU (KAPOLEI, OAHU ISLAND) 96766": { Sedan: 2400, SUV: 2400, Fast: 2400, Oversize: 2400 },
+    "HONOLULU (LIHUE, KAUAI ISLAND) 96766": { Sedan: 3675, SUV: 3675, Fast: 3675, Oversize: 3675 },
+    "HOUSTON 77073": { Sedan: 475, SUV: 475, Fast: 475, Oversize: 475 },
+    "HOUSTON EAST": { Sedan: 475, SUV: 475, Fast: 475, Oversize: 475 },
+    "INDIANAPOLIS 46254": {
+        Sedan: 450,
+        SUV: 450,
+        Fast: 450,
+        Oversize: 450
+    },
+    "IONIA, MI 48875": {
+        Sedan: 760,
+        SUV: 760,
+        Fast: 760,
+        Oversize: 760
+    },
+    "JACKSON 39073": {
+    Sedan: 825,
+    SUV: 825,
+    Fast: 825,
+    Oversize: 825
+  },
+  "JACKSONVILLE EAST 32209": {
+    Sedan: 525,
+    SUV: 525,
+    Fast: 525,
+    Oversize: 525
+  },
+  "JACKSONVILLE NORTH 32218": {
+    Sedan: 525,
+    SUV: 525,
+    Fast: 525,
+    Oversize: 525
+  },
+  "JACKSONVILLE WEST 32220": {
+    Sedan: 525,
+    SUV: 525,
+    Fast: 525,
+    Oversize: 525
+  },
+    "KANSAS CITY 66111": {
+    Sedan: 925,
+    SUV: 925,
+    Fast: 925,
+    Oversize: 925
+  },
+  "KINCHLOE (MI) 49788": {
+    Sedan: 1125,
+    SUV: 1125,
+    Fast: 1125,
+    Oversize: 1125
+  },
+  "KNOXVILLE 37354": {
+    Sedan: 700,
+    SUV: 700,
+    Fast: 700,
+    Oversize: 700
+  },
+    "LANSING 48917": {
+    Sedan: 760,
+    SUV: 760,
+    Fast: 760,
+    Oversize: 760
+  },
+  "LAS VEGAS 89115": {
+    Sedan: 620,
+    SUV: 620,
+    Fast: 620,
+    Oversize: 620
+  },
+  "LAS VEGAS WEST (NV) 89032": {
+    Sedan: 625,
+    SUV: 625,
+    Fast: 625,
+    Oversize: 625
+  },
+  "LEXINGTON EAST 40509": {
+    Sedan: 815,
+    SUV: 815,
+    Fast: 815,
+    Oversize: 815
+  },
+  "LEXINGTON WEST 40342": {
+    Sedan: 815,
+    SUV: 815,
+    Fast: 815,
+    Oversize: 815
+  },
+  "LINCOLN 68366": {
+    Sedan: 825,
+    SUV: 825,
+    Fast: 825,
+    Oversize: 825
+  },
+  "LITTLE ROCK 72032": {
+    Sedan: 825,
+    SUV: 825,
+    Fast: 825,
+    Oversize: 825
+  },
+  "LONG BEACH (CA) 90744": {
+    Sedan: 415,
+    SUV: 415,
+    Fast: 415,
+    Oversize: 415
+  },
+  "LONG ISLAND 11719": {
+    Sedan: 550,
+    SUV: 550,
+    Fast: 550,
+    Oversize: 550
+  },
+  "LONGVIEW, TX 75603": {
+    Sedan: 625,
+    SUV: 625,
+    Fast: 625,
+    Oversize: 625
+  },
+  "LOS ANGELES 90001": {
+    Sedan: 450,
+    SUV: 450,
+    Fast: 450,
+    Oversize: 450
+  },
+  "LOUISVILLE (KY) 40272": {
+    Sedan: 815,
+    SUV: 815,
+    Fast: 815,
+    Oversize: 815
+  },
+  "LUFKIN, TX 75904": {
+    Sedan: 575,
+    SUV: 575,
+    Fast: 575,
+    Oversize: 575
+  },
+  "LUMBERTON, NC 28360": {
+    Sedan: 600,
+    SUV: 600,
+    Fast: 600,
+    Oversize: 600
+  },
+  "LYMAN 04002": {
+    Sedan: 725,
+    SUV: 725,
+    Fast: 725,
+    Oversize: 725
+  },
+    "MACON (GA) 31008": { Sedan: 550, SUV: 550, Fast: 550, Oversize: 550 },
+  "MADISON SOUTH (WI) 53558": { Sedan: 675, SUV: 675, Fast: 675, Oversize: 675 },
+  "MADISON (WI) 53718": { Sedan: 675, SUV: 675, Fast: 675, Oversize: 675 },
+  "MARTINEZ 94553": { Sedan: 690, SUV: 690, Fast: 690, Oversize: 690 },
+  "MCALLEN, TX 78570": { Sedan: 650, SUV: 650, Fast: 650, Oversize: 650 },
+  "MEBANE 27302": { Sedan: 600, SUV: 600, Fast: 600, Oversize: 600 },
+  "MEMPHIS 38118": { Sedan: 780, SUV: 780, Fast: 780, Oversize: 780 },
+  "Mentone (CA) 92359": { Sedan: 540, SUV: 540, Fast: 540, Oversize: 540 },
+  "MIAMI CENTRAL 33167": { Sedan: 650, SUV: 650, Fast: 650, Oversize: 650 },
+  "MIAMI NORTH 33054": { Sedan: 650, SUV: 650, Fast: 650, Oversize: 650 },
+  "MIAMI SOUTH 33032": { Sedan: 670, SUV: 670, Fast: 670, Oversize: 670 },
+  "MILWAUKEE 53110": { Sedan: 690, SUV: 690, Fast: 690, Oversize: 690 },
+  "MILWAUKEE NORTH (WI) 53224": { Sedan: 690, SUV: 690, Fast: 690, Oversize: 690 },
+  "Milwaukee South (WI) 53132": { Sedan: 690, SUV: 690, Fast: 690, Oversize: 690 },
+  "MINNEAPOLIS 55421": { Sedan: 790, SUV: 790, Fast: 790, Oversize: 790 },
+  "MINNEAPOLIS NORTH 55304": { Sedan: 790, SUV: 790, Fast: 790, Oversize: 790 },
+  "MOBILE (AL) 36613": { Sedan: 675, SUV: 675, Fast: 675, Oversize: 675 },
+  "MOBILE SOUTH (AL) 36582": { Sedan: 675, SUV: 675, Fast: 675, Oversize: 675 },
+  "MOCKSVILLE, NC 27028": { Sedan: 600, SUV: 600, Fast: 600, Oversize: 600 },
+  "MONTGOMERY 36116": { Sedan: 695, SUV: 695, Fast: 695, Oversize: 695 },
+"Napa, CA 94503": {
+    Sedan: 750,
+    SUV: 750,
+    Fast: 750,
+    Oversize: 750
+  },
+  "NASHVILLE 37090": {
+    Sedan: 725,
+    SUV: 725,
+    Fast: 725,
+    Oversize: 725
+  },
+  "NEWBURGH/Marlboro 12542": {
+    Sedan: 550,
+    SUV: 550,
+    Fast: 550,
+    Oversize: 550
+  },
+  "NEW ORLEANS 70129": {
+    Sedan: 700,
+    SUV: 700,
+    Fast: 700,
+    Oversize: 700
+  },
+  "NORTH AUSTIN, TX 76574": {
+    Sedan: 600,
+    SUV: 600,
+    Fast: 600,
+    Oversize: 600
+  },
+  "NORTH BOSTON 01862": {
+    Sedan: 650,
+    SUV: 650,
+    Fast: 650,
+    Oversize: 650
+  },
+  "NORTH CHARLESTON (SC) 29448": {
+    Sedan: 525,
+    SUV: 525,
+    Fast: 525,
+    Oversize: 525
+  },
+  "NORTH SEATTLE 98223": {
+    Sedan: 1150,
+    SUV: 1150,
+    Fast: 1150,
+    Oversize: 1150
+  },
+ "OCALA 34482": {
+    Sedan: 600,
+    SUV: 600,
+    Fast: 600,
+    Oversize: 600
+  },
+  "OGDEN (UT) 84404": {
+    Sedan: 825,
+    SUV: 825,
+    Fast: 825,
+    Oversize: 825
+  },
+  "OKLAHOMA CITY 73129": {
+    Sedan: 775,
+    SUV: 775,
+    Fast: 775,
+    Oversize: 775
+  },
+  "ORLANDO (FL) 32822": {
+    Sedan: 590,
+    SUV: 590,
+    Fast: 590,
+    Oversize: 590
+  },
+  "ORLANDO NORTH (FL)": {
+    Sedan: 590,
+    SUV: 590,
+    Fast: 590,
+    Oversize: 590
+  },
+  "ORLANDO SOUTH (FL) 32824": {
+    Sedan: 590,
+    SUV: 590,
+    Fast: 590,
+    Oversize: 590
+  },
+"PASCO (WA) 99301": {
+    Sedan: 1125,
+    SUV: 1125,
+    Fast: 1125,
+    Oversize: 1125
+  },
+  "PEORIA (IL) 61554": {
+    Sedan: 625,
+    SUV: 625,
+    Fast: 625,
+    Oversize: 625
+  },
+  "PHILADELPHIA EAST (PA) 18914": {
+    Sedan: 540,
+    SUV: 540,
+    Fast: 540,
+    Oversize: 540
+  },
+  "PHILADELPHIA (PA) 18073": {
+    Sedan: 540,
+    SUV: 540,
+    Fast: 540,
+    Oversize: 540
+  },
+  "PHOENIX (AZ) 85043": {
+    Sedan: 600,
+    SUV: 600,
+    Fast: 600,
+    Oversize: 600
+  },
+  "PHOENIX NORTH (AZ) 85085": {
+    Sedan: 600,
+    SUV: 600,
+    Fast: 600,
+    Oversize: 600
+  },
+  "PITTSBURGH EAST (PA) 15611": {
+    Sedan: 750,
+    SUV: 750,
+    Fast: 750,
+    Oversize: 750
+  },
+  "PITTSBURGH NORTH (PA) 16117": {
+    Sedan: 750,
+    SUV: 750,
+    Fast: 750,
+    Oversize: 750
+  },
+  "PITTSBURGH WEST (PA) 15122": {
+    Sedan: 750,
+    SUV: 750,
+    Fast: 750,
+    Oversize: 750
+  },
+  "PITTSBURGH SOUTH (PA) 15122": {
+    Sedan: 750,
+    SUV: 750,
+    Fast: 750,
+    Oversize: 750
+  },
+  "PORTLAND NORTH (OR) 97218": {
+    Sedan: 950,
+    SUV: 950,
+    Fast: 950,
+    Oversize: 950
+  },
+  "PORTLAND SOUTH (OR) 97071": {
+    Sedan: 950,
+    SUV: 950,
+    Fast: 950,
+    Oversize: 950
+  },
+  "PUNTA GORDA (FL) 33982": {
+    Sedan: 625,
+    SUV: 625,
+    Fast: 625,
+    Oversize: 625
+  },
+  "Punta Gorda South (FL) 34269": {
+    Sedan: 650,
+    SUV: 650,
+    Fast: 650,
+    Oversize: 650
+  },
+"RALEIGH (NC) 28334": {
+    Sedan: 590,
+    SUV: 590,
+    Fast: 590,
+    Oversize: 590
+  },
+  "RALEIGH NORTH (NC) 27545": {
+    Sedan: 590,
+    SUV: 590,
+    Fast: 590,
+    Oversize: 590
+  },
+  "RANCHO CUCAMONGA (CA) 91739": {
+    Sedan: 525,
+    SUV: 525,
+    Fast: 525,
+    Oversize: 525
+  },
+  "REDDING (CA) 96007": {
+    Sedan: 900,
+    SUV: 900,
+    Fast: 900,
+    Oversize: 900
+  },
+  "RENO (NV) 89506": {
+    Sedan: 800,
+    SUV: 800,
+    Fast: 800,
+    Oversize: 800
+  },
+  "RICHMOND EAST (VA) 23030": {
+    Sedan: 650,
+    SUV: 650,
+    Fast: 650,
+    Oversize: 650
+  },
+  "RICHMOND (VA) 23150": {
+    Sedan: 650,
+    SUV: 650,
+    Fast: 650,
+    Oversize: 650
+  },
+  "ROCHESTER (NY) 14482": {
+    Sedan: 725,
+    SUV: 725,
+    Fast: 725,
+    Oversize: 725
+  },
+  "RUTLAND (VT) 06736": {
+    Sedan: 775,
+    SUV: 775,
+    Fast: 775,
+    Oversize: 775
+  },
+  "Rapid City": {
+    Sedan: 1100,
+    SUV: 1100,
+    Fast: 1100,
+    Oversize: 1100
+  },
+"SACRAMENTO (CA) 95828": {
+    Sedan: 690,
+    SUV: 690,
+    Fast: 690,
+    Oversize: 690
+  },
+  "SALT LAKE CITY (UT) 84044": {
+    Sedan: 825,
+    SUV: 825,
+    Fast: 825,
+    Oversize: 825
+  },
+  "SALT LAKE CITY (UT) 84054": {
+    Sedan: 825,
+    SUV: 825,
+    Fast: 825,
+    Oversize: 825
+  },
+  "SAN ANTONIO (TX) 78224": {
+    Sedan: 600,
+    SUV: 600,
+    Fast: 600,
+    Oversize: 600
+  },
+  "SAN BERNARDINO (CA) 92324": {
+    Sedan: 500,
+    SUV: 500,
+    Fast: 500,
+    Oversize: 500
+  },
+  "SAN DIEGO (CA) 92154": {
+    Sedan: 550,
+    SUV: 550,
+    Fast: 550,
+    Oversize: 550
+  },
+  "SAN JOSE (CA) 95046": {
+    Sedan: 870,
+    SUV: 870,
+    Fast: 870,
+    Oversize: 870
+  },
+  "SAVANNAH (GA) 31405": {
+    Sedan: 870,
+    SUV: 870,
+    Fast: 870,
+    Oversize: 870
+  },
+  "SCRANTON (PA) 18642": {
+    Sedan: 870,
+    SUV: 870,
+    Fast: 870,
+    Oversize: 870
+  },
+  "SHREVEPORT (LA) 71109": {
+    Sedan: 870,
+    SUV: 870,
+    Fast: 870,
+    Oversize: 870
+  },
+  "SIKESTON (MO) 63801": {
+    Sedan: 870,
+    SUV: 870,
+    Fast: 870,
+    Oversize: 870
+  },
+  "SO SACRAMENTO 95828": {
+    Sedan: 870,
+    SUV: 870,
+    Fast: 870,
+    Oversize: 870
+  },
+  "SO SACRAMENTO (CA) 95828": {
+    Sedan: 870,
+    SUV: 870,
+    Fast: 870,
+    Oversize: 870
+  },
+  "SALT LAKE CITY (UT) 84044": {
+    Sedan: 960,
+    SUV: 960,
+    Fast: 960,
+    Oversize: 960
+  },
+  "SALT LAKE CITY (UT) 84054": {
+    Sedan: 960,
+    SUV: 960,
+    Fast: 960,
+    Oversize: 960
+  },
+  "SAN ANTONIO (TX) 78224": {
+    Sedan: 925,
+    SUV: 925,
+    Fast: 925,
+    Oversize: 925
+  },
+  "SAN BERNARDINO (CA) 92324": {
+    Sedan: 1025,
+    SUV: 1025,
+    Fast: 1025,
+    Oversize: 1025
+  },
+  "SAN DIEGO (CA) 92154": {
+    Sedan: 1010,
+    SUV: 1010,
+    Fast: 1010,
+    Oversize: 1010
+  },
+  "SAN JOSE (CA) 95046": {
+    Sedan: 690,
+    SUV: 690,
+    Fast: 690,
+    Oversize: 690
+  },
+  "SAVANNAH (GA) 31405": {
+    Sedan: 450,
+    SUV: 450,
+    Fast: 450,
+    Oversize: 450
+  },
+  "SCRANTON (PA) 18642": {
+    Sedan: 575,
+    SUV: 575,
+    Fast: 575,
+    Oversize: 575
+  },
+  "SEAFORD (DE) 19973": {
+    Sedan: 590,
+    SUV: 590,
+    Fast: 590,
+    Oversize: 590
+  },
+  "SHREVEPORT (LA) 71109": {
+    Sedan: 675,
+    SUV: 675,
+    Fast: 675,
+    Oversize: 675
+  },
+  "SIKESTON (MO) 63801": {
+    Sedan: 800,
+    SUV: 800,
+    Fast: 800,
+    Oversize: 800
+  },
+  "SOMERVILLE (NJ) 08844": {
+    Sedan: 480,
+    SUV: 480,
+    Fast: 480,
+    Oversize: 480
+  },
+  "SO SACRAMENTO 95828": {
+    Sedan: 690,
+    SUV: 690,
+    Fast: 690,
+    Oversize: 690
+  },
+  "SO SACRAMENTO (CA) 95828": {
+    Sedan: 690,
+    SUV: 690,
+    Fast: 690,
+    Oversize: 690
+  },
+  "SOUTH BOSTON (MA) 01756": {
+    Sedan: 650,
+    SUV: 650,
+    Fast: 650,
+    Oversize: 650
+  },
+  "SOUTHERN ILLINOIS (IL) 62207": {
+    Sedan: 596,
+    SUV: 596,
+    Fast: 596,
+    Oversize: 596
+  },
+  "SPARTANBURG (SC) 29301": {
+    Sedan: 575,
+    SUV: 575,
+    Fast: 575,
+    Oversize: 575
+  },
+  "SPOKANE (WA) 99001": {
+    Sedan: 1125,
+    SUV: 1125,
+    Fast: 1125,
+    Oversize: 1125
+  },
+  "SPRINGFIELD (MO) 65742": {
+    Sedan: 750,
+    SUV: 750,
+    Fast: 750,
+    Oversize: 750
+  },
+  "ST.CLOUD (MN) 56310": {
+    Sedan: 790,
+    SUV: 790,
+    Fast: 790,
+    Oversize: 790
+  },
+  "ST.LOUIS (MO) 63044": {
+    Sedan: 690,
+    SUV: 690,
+    Fast: 690,
+    Oversize: 690
+  },
+  "SUN VALLEY (CA) 91352": {
+    Sedan: 530,
+    SUV: 530,
+    Fast: 530,
+    Oversize: 530
+  },
+"SYRACUSE (NY) 13036": {
+    Sedan: 625,
+    SUV: 625,
+    Fast: 625,
+    Oversize: 625
+  },
+"TALLAHASSEE (FL) 32343": {
+    Sedan: 625,
+    SUV: 625,
+    Fast: 625,
+    Oversize: 625
+  },
+  "TAMPA SOUTH (FL) 33578": {
+    Sedan: 625,
+    SUV: 625,
+    Fast: 625,
+    Oversize: 625
+  },
+  "TANNER (AL) 35671": {
+    Sedan: 695,
+    SUV: 695,
+    Fast: 695,
+    Oversize: 695
+  },
+  "TIFTON (GA) 31794": {
+    Sedan: 575,
+    SUV: 575,
+    Fast: 575,
+    Oversize: 575
+  },
+  "TRENTON (NJ) 08561": {
+    Sedan: 475,
+    SUV: 475,
+    Fast: 475,
+    Oversize: 475
+  },
+  "TUCSON (AZ) 85706": {
+    Sedan: 675,
+    SUV: 675,
+    Fast: 675,
+    Oversize: 675
+  },
+  "TULSA (OK) 74107": {
+    Sedan: 825,
+    SUV: 825,
+    Fast: 825,
+    Oversize: 825
+  },
+"VALLEJO (CA) 94590": { Sedan: 690, SUV: 690, Fast: 690, Oversize: 690 },
+  "VAN NUYS (CA) 91405": { Sedan: 525, SUV: 525, Fast: 525, Oversize: 525 },
+  "WACO (TX) 76501": { Sedan: 590, SUV: 590, Fast: 590, Oversize: 590 },
+  "WALTON (KY) 41094": { Sedan: 815, SUV: 815, Fast: 815, Oversize: 815 },
+  "WASHINGTON (DC) 20602": { Sedan: 620, SUV: 620, Fast: 620, Oversize: 620 },
+  "WAYLAND (MI) 49348": { Sedan: 760, SUV: 760, Fast: 760, Oversize: 760 },
+  "WEST PALM BEACH (FL) 33411": { Sedan: 650, SUV: 650, Fast: 650, Oversize: 650 },
+  "WEST WARREN (MA) 01092": { Sedan: 650, SUV: 650, Fast: 650, Oversize: 650 },
+  "WHEELING (IL) 60090": { Sedan: 570, SUV: 570, Fast: 570, Oversize: 570 },
+  "WICHITA (KS) 67216": { Sedan: 875, SUV: 875, Fast: 875, Oversize: 875 },
+  "WINDHAM, ME 04062": { Sedan: 725, SUV: 725, Fast: 725, Oversize: 725 },
+  "YORK HAVEN (PA) 17370": { Sedan: 575, SUV: 575, Fast: 575, Oversize: 575 }
     };
 
     const land = land_costs[location] || 650;

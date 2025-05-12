@@ -2558,8 +2558,9 @@ function calculate() {
   "YORK HAVEN (PA) 17370": { Sedan: 575, SUV: 575, Fast: 575, Oversize: 575 }
     };
 
-    const land = land_costs[location] || 650;
-    const freight=freight_costs[location];
+    const size = document.getElementById('size').value;
+    const land = land_costs[location]?.[size] || 650;
+    const freight = freight_costs[location]?.[size] || 1000;
     const company = 750;
 
     const vehicle_total = offer + auction_fee;

@@ -2425,7 +2425,7 @@ function calculate() {
 
     const eurToPln = parseFloat(document.getElementById('eurToPln').value);
     const agencyFee = parseFloat(document.getElementById('agencyFee').value);
-    const duty_eur = Math.round(offer * 0.13);
+    const duty_eur = Math.round(offer * 0.1127);
     const vat_eur = Math.round((offer + duty_eur) * 0.23);
 
     const duty_pln = Math.round(duty_eur * eurToPln);

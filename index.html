@@ -2469,6 +2469,21 @@ function calculate() {
 🏁 SUMA: $${grand_total_usd} / PLN ${grand_total_pln}
     `;
 }
+     async function updateDollarToPlnRate() {
+    try {
+      const response = await fetch("https://api.nbp.pl/api/exchangerates/rates/A/USD/?format=json");
+      const data = await response.json();
+      const rate = data.rates[0].mid;
+
+      document.getElementById("eurToPln").value = rate.toFixed(2); // Optional: round to 2 decimals
+    } catch (error) {
+      console.error("Error fetching USD to PLN rate:", error);
+      document.getElementById("eurToPln").value = "Error";
+    }
+  }
+
+  // Fetch rate on page load
+  window.addEventListener("DOMContentLoaded", updateDollarToPlnRate);
 </script>
 
 </body>

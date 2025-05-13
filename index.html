@@ -474,7 +474,7 @@ function calculate() {
     const offer = parseFloat(document.getElementById('offer').value);
     const extra = parseFloat(document.getElementById('extra').value);
     const hazard = document.getElementById('hazard').value === "Tak" ? 100 : 0;
-    const insurance = document.getElementById('insurance').value === "Tak" ? 650 : 0;
+    const insurance =Math.round(offer * 0.0126);
     const auction = document.getElementById('auction').value;
     const location = document.getElementById('location').value;
 

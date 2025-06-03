@@ -282,7 +282,7 @@
 <option value="SIKESTON (MO) 63801">SIKESTON (MO) 63801</option>
 <option value="SO SACRAMENTO 95828">SO SACRAMENTO 95828</option>
 <option value="SO SACRAMENTO (CA) 95828">SO SACRAMENTO (CA) 95828</option>
-        <option value="SALT LAKE CITY (UT) 84044">SALT LAKE CITY (UT) 84044</option>
+<option value="SALT LAKE CITY (UT) 84044">SALT LAKE CITY (UT) 84044</option>
 <option value="SALT LAKE CITY (UT) 84054">SALT LAKE CITY (UT) 84054</option>
 <option value="SAN ANTONIO (TX) 78224">SAN ANTONIO (TX) 78224</option>
 <option value="SAN BERNARDINO (CA) 92324">SAN BERNARDINO (CA) 92324</option>
@@ -335,11 +335,17 @@
         <option value="Tak">Tak</option>
     </select>
 
+    <label>Typ klienta</label>
+<select id="clientType">
+    <option value="firma">Firma</option>
+    <option value="osoba">Osoba fizyczna</option>
+</select>
+
     <label>Kurs USD → PLN</label>
     <input type="number" id="eurToPln" value="4.28" step="0.01">
 
     <label>Agencja Celna (USD)</label>
-    <input type="number" id="agencyFee" value="670">
+    <input type="number" id="agencyFee" value="600">
 
     <button onclick="calculate()">✅ Oblicz</button>
 
@@ -377,79 +383,78 @@
     if (price <= 699.99) return 210.00;
     if (price <= 799.99) return 230.00;
     if (price <= 899.99) return 250.00;
-    if (price <= 999.99) return 275.00;
-    if (price <= 1199.99) return 325.00;
-    if (price <= 1299.99) return 350.00;
-    if (price <= 1399.99) return 365.00;
-    if (price <= 1499.99) return 380.00;
-    if (price <= 1599.99) return 390.00;
-    if (price <= 1699.99) return 410.00;
-    if (price <= 1799.99) return 420.00;
-    if (price <= 1999.99) return 440.00;
-    if (price <= 2399.99) return 470.00;
-    if (price <= 2499.99) return 480.00;
-    if (price <= 2999.99) return 500.00;
-    if (price <= 3499.99) return 600.00;
-    if (price <= 3999.99) return 675.00;
-    if (price <= 4499.99) return 710.00;
-    if (price <= 4999.99) return 750.00;
-    if (price <= 5499.99) return 750.00;
-    if (price <= 5999.99) return 750.00;
-    if (price <= 6499.99) return 800.00;
-    if (price <= 6999.99) return 800.00;
-    if (price <= 7499.99) return 800.00;
-    if (price <= 7999.99) return 815.00;
-    if (price <= 8499.99) return 840.00;
-    if (price <= 8999.99) return 840.00;
-    if (price <= 9999.99) return 840.00;
-    if (price <= 10499.99) return 850.00;
-    if (price <= 10999.99) return 850.00;
-    if (price <= 11499.99) return 850.00;
-    if (price <= 11999.99) return 850.00;
-    if (price <= 12499.99) return 850.00;
-    if (price <= 14999.99) return 850.00;
-    // For prices above $15,000, apply 7.25% fee
-    return parseFloat((price * 0.0725).toFixed(2));
+    if (price <= 999.99) return 540.00;
+    if (price <= 1199.99) return 580.00;
+    if (price <= 1299.99) return 600.00;
+    if (price <= 1399.99) return 615.00;
+    if (price <= 1499.99) return 635.00;
+    if (price <= 1599.99) return 660.00;
+    if (price <= 1699.99) return 680.00;
+    if (price <= 1799.99) return 700.00;
+    if (price <= 1999.99) return 725.00;
+    if (price <= 2399.99) return 765.00;
+    if (price <= 2499.99) return 800.00;
+    if (price <= 2999.99) return 840.00;
+    if (price <= 3499.99) return 885.00;
+    if (price <= 3999.99) return 935.00;
+    if (price <= 4499.99) return 965.00;
+    if (price <= 4999.99) return 990.00;
+    if (price <= 5499.99) return 1015.00;
+    if (price <= 5999.99) return 1040.00;
+    if (price <= 6499.99) return 1080.00;
+    if (price <= 6999.99) return 1100.00;
+    if (price <= 7499.99) return 1135.00;
+    if (price <= 7999.99) return 1155.00;
+    if (price <= 8499.99) return 1195.00;
+    if (price <= 8999.99) return 1215.00;
+    if (price <= 9999.99) return 1215.00;
+    if (price <= 14999.99) return 1270.00;
+    // For prices >= $15,000: $1,395 + 13.33% of amount over $15,000
+    if (price >= 15000) return Math.round(1395 + ((price - 15000) / 13.33));
 }
 function getIAAIFee(price) {
-    if (price <= 99.99) return 20.00;
+     if (price <= 49.99) return 25.00;
+    if (price <= 99.99) return 45.00;
     if (price <= 199.99) return 80.00;
-    if (price <= 299.99) return 130.00;
-    if (price <= 349.99) return 137.50;
-    if (price <= 399.99) return 145.00;
-    if (price <= 449.99) return 175.00;
-    if (price <= 499.99) return 185.00;
-    if (price <= 549.99) return 205.00;
-    if (price <= 599.99) return 210.00;
-    if (price <= 699.99) return 240.00;
-    if (price <= 799.99) return 270.00;
-    if (price <= 899.99) return 295.00;
-    if (price <= 999.99) return 320.00;
-    if (price <= 1199.99) return 375.00;
-    if (price <= 1299.99) return 395.00;
-    if (price <= 1399.99) return 410.00;
-    if (price <= 1499.99) return 430.00;
-    if (price <= 1599.99) return 445.00;
-    if (price <= 1699.99) return 465.00;
-    if (price <= 1799.99) return 485.00;
-    if (price <= 1999.99) return 510.00;
-    if (price <= 2499.99) return 535.00;
-    if (price <= 2999.99) return 570.00;
-    if (price <= 3499.99) return 610.00;
-    if (price <= 3999.99) return 655.00;
-    if (price <= 4499.99) return 705.00;
-    if (price <= 4999.99) return 725.00;
-    if (price <= 5499.99) return 750.00;
-    if (price <= 5999.99) return 800.00;
-    if (price <= 6499.99) return 825.00;
-    if (price <= 6999.99) return 845.00;
-    if (price <= 7499.99) return 880.00;
-    if (price <= 7999.99) return 900.00;
-    if (price <= 8499.99) return 925.00;
-    if (price <= 9999.99) return 945.00;
-    if (price <= 14999.99) return 1000.00;
+    if (price <= 299.99) return 120.00;
+    if (price <= 349.99) return 120.00;
+    if (price <= 399.99) return 120.00;
+    if (price <= 449.99) return 160.00;
+    if (price <= 499.99) return 160.00;
+    if (price <= 549.99) return 185.00;
+    if (price <= 599.99) return 185.00;
+    if (price <= 699.99) return 210.00;
+    if (price <= 799.99) return 230.00;
+    if (price <= 899.99) return 250.00;
+    if (price <= 999.99) return 540.00;
+    if (price <= 1199.99) return 615.00;
+    if (price <= 1299.99) return 635.00;
+    if (price <= 1399.99) return 650.00;
+    if (price <= 1499.99) return 670.00;
+    if (price <= 1599.99) return 695.00;
+    if (price <= 1699.99) return 715.00;
+    if (price <= 1799.99) return 735.00;
+    if (price <= 1999.99) return 760.00;
+     if (price <= 2199.99) return 765.00
+    if (price <= 2399.99) return 780.00;
+    if (price <= 2499.99) return 835.00;
+    if (price <= 2999.99) return 875.00;
+    if (price <= 3499.99) return 920.00;
+    if (price <= 3999.99) return 970.00;
+    if (price <= 4499.99) return 1000.00;
+    if (price <= 4999.99) return 1025.00;
+    if (price <= 5499.99) return 1050.00;
+    if (price <= 5999.99) return 1075.00;
+    if (price <= 6499.99) return 1115.00;
+    if (price <= 6999.99) return 1135.00;
+    if (price <= 7499.99) return 1170.00;
+    if (price <= 7999.99) return 1190.00;
+    if (price <= 8499.99) return 1230.00;
+    if (price <= 8999.99) return 1250.00;
+    if (price <= 9999.99) return 1250.00;
+    if (price <= 14999.99) return 1305.00;
     // Over $15,000: 7.5% of sale price
-    return parseFloat((price * 0.075).toFixed(2));
+    if (price >= 15000) return Math.round(1430 + ((price - 15000) / 13.33));
 }
     function updateExciseResult() {
     const excise_percent = parseFloat(document.getElementById('excise').value);
@@ -472,6 +477,7 @@ document.getElementById('eurToPln').addEventListener('input', updateExciseResult
 window.addEventListener('DOMContentLoaded', updateExciseResult);
 function calculate() {
     const offer = parseFloat(document.getElementById('offer').value);
+    const clientType = document.getElementById('clientType').value;
     const extra = parseFloat(document.getElementById('extra').value);
     const hazard = document.getElementById('hazard').value === "Tak" ? 100 : 0;
     const insurance =document.getElementById('insurance').value === "Tak" ? Math.round(offer * 0.0216) : 0 ;
@@ -2425,9 +2431,12 @@ function calculate() {
 
     const eurToPln = parseFloat(document.getElementById('eurToPln').value);
     const agencyFee = parseFloat(document.getElementById('agencyFee').value);
-    const duty_eur = Math.round(offer * 0.1);
-    const vat_eur = Math.round((offer + duty_eur) * 0.23);
-
+    let duty_eur = Math.round(offer / 9.20810313076);
+    let vat_eur = Math.round((offer + duty_eur) * 0.2046);
+if (clientType === "osoba") {
+    duty_eur = Math.round(duty_eur / 2);
+    vat_eur = Math.round(vat_eur / 2);
+}
     const duty_pln = Math.round(duty_eur * eurToPln);
     const vat_pln = Math.round(vat_eur * eurToPln);
     const agency_pln = Math.round(agencyFee * eurToPln);

@@ -369,6 +369,7 @@
 </div>
 
 <script>
+    let euroToUsdRate = 1;
     function getCopartFee(price) {
     if (price <= 49.99) return 25.00;
     if (price <= 99.99) return 45.00;
@@ -2448,7 +2449,11 @@ if (clientType === "osoba") {
     const excise_pln = Math.round((excise_percent / 100) * marketValue * eurToPln);
 
     const total_customs_eur = duty_eur + vat_eur + agencyFee + (rotterdam_pln / eurToPln) + (excise_pln / eurToPln);
-    const grand_total_usd = overall_usd + Math.round(total_customs_eur);
+    const duty_usd = Math.round(duty_eur * euroToUsdRate);
+    const vat_usd = Math.round(vat_eur * euroToUsdRate);
+    const agency_usd = Math.round(agencyFee * euroToUsdRate);
+    const total_customs_usd = Math.round(total_customs_eur * euroToUsdRate);
+    const grand_total_usd = overall_usd + total_customs_usd;
     const grand_total_pln = customs_total + excise_pln + Math.round(overall_usd * eurToPln);
 
     document.getElementById('result').value = `
@@ -2468,9 +2473,9 @@ if (clientType === "osoba") {
 💵 Całkowite Wydatki: $${overall_usd}
 
 💰 Wynik Opłat Celnych:
-   Cło: $${duty_eur} / PLN ${duty_pln}
-   VAT: $${vat_eur} / PLN ${vat_pln}
-   Agencja Celna: $${agencyFee} / PLN ${agency_pln}
+   Cło: $${duty_usd} / PLN ${duty_pln}
+   VAT: $${vat_usd} / PLN ${vat_pln}
+   Agencja Celna: $${agency_usd} / PLN ${agency_pln}
    Dostawa z Rotterdamu: PLN ${rotterdam_pln}
    Akcyza: PLN ${excise_pln}
 🧾 Razem Cło: PLN ${customs_total + excise_pln}
@@ -2480,14 +2485,21 @@ if (clientType === "osoba") {
 }
      async function updateDollarToPlnRate() {
     try {
-      const response = await fetch("https://api.nbp.pl/api/exchangerates/rates/A/USD/?format=json");
-      const data = await response.json();
-      const rate = data.rates[0].mid;
+      const [usdRes, eurRes] = await Promise.all([
+        fetch("https://api.nbp.pl/api/exchangerates/rates/A/USD/?format=json"),
+        fetch("https://api.nbp.pl/api/exchangerates/rates/A/EUR/?format=json")
+      ]);
+      const usdData = await usdRes.json();
+      const eurData = await eurRes.json();
+      const usdRate = usdData.rates[0].mid;
+      const eurRate = eurData.rates[0].mid;
 
-      document.getElementById("eurToPln").value = rate.toFixed(2); // Optional: round to 2 decimals
+      document.getElementById("eurToPln").value = usdRate.toFixed(2);
+      euroToUsdRate = eurRate / usdRate;
     } catch (error) {
-      console.error("Error fetching USD to PLN rate:", error);
+      console.error("Error fetching exchange rates:", error);
       document.getElementById("eurToPln").value = "Error";
+      euroToUsdRate = 1;
     }
   }
 

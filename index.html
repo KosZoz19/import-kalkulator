@@ -2495,7 +2495,11 @@ if (clientType === "osoba") {
       const eurRate = eurData.rates[0].mid;
 
       document.getElementById("eurToPln").value = usdRate.toFixed(2);
+ 060z0i-codex/convert-prices-from-euro-to--using-rates
+      euroToUsdRate = eurRate / usdRate;
+
       euroToUsdRate = usdRate / eurRate;
+main
     } catch (error) {
       console.error("Error fetching exchange rates:", error);
       document.getElementById("eurToPln").value = "Error";

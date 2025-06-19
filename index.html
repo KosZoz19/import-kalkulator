@@ -2448,7 +2448,7 @@ if (clientType === "osoba") {
     const marketValue = parseFloat(document.getElementById('marketValue').value);
     const excise_pln = Math.round((excise_percent / 100) * marketValue * eurToPln);
 
-    const total_customs_eur = duty_eur + vat_eur + agencyFee + (rotterdam_pln / eurToPln) + (excise_pln / eurToPln);
+    const total_customs_eur = duty_eur*1.15 + vat_eur*1.15 + agencyFee*1.15 + (rotterdam_pln / eurToPln) + (excise_pln / eurToPln);
     const grand_total_usd = overall_usd + Math.round(total_customs_eur);
     const grand_total_pln = customs_total + excise_pln + Math.round(overall_usd * eurToPln);
 

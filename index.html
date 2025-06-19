@@ -2448,7 +2448,7 @@ if (clientType === "osoba") {
     const marketValue = parseFloat(document.getElementById('marketValue').value);
     const excise_pln = Math.round((excise_percent / 100) * marketValue * eurToPln);
 
-    const total_customs_eur = duty_eur*1.15 + vat_eur*1.15 + agencyFee*1.15 + (rotterdam_pln / eurToPln) + (excise_pln / eurToPln);
+    const total_customs_eur = duty_eur*eurToUsd + vat_eur*eurToUsd + agencyFee*eurToUsd + (rotterdam_pln / eurToPln) + (excise_pln / eurToPln)+100;
     const grand_total_usd = overall_usd + Math.round(total_customs_eur);
     const grand_total_pln = customs_total + excise_pln + Math.round(overall_usd * eurToPln);
 
@@ -2491,6 +2491,15 @@ if (clientType === "osoba") {
       document.getElementById("eurToPln").value = "Error";
     }
   }
+    async function getEuroToUsdRate() {
+  const eurRes = await fetch("https://api.nbp.pl/api/exchangerates/rates/A/EUR/?format=json");
+  const usdRes = await fetch("https://api.nbp.pl/api/exchangerates/rates/A/USD/?format=json");
+
+  const eurData = await eurRes.json();
+  const usdData = await usdRes.json();
+
+  return eurData.rates[0].mid / usdData.rates[0].mid;
+}
 
   // Fetch rate on page load
   window.addEventListener("DOMContentLoaded", updateDollarToPlnRate);

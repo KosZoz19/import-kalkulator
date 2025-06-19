@@ -2420,7 +2420,7 @@ function calculate() {
   "WINDHAM, ME 04062": { Sedan: 725, SUV: 725, Fast: 725, Oversize: 1150 },
   "YORK HAVEN (PA) 17370": { Sedan: 575, SUV: 575, Fast: 575, Oversize: 850 }
     };
-
+ const eurToUsd = await getEuroToUsdRate();
     const size = document.getElementById('size').value;
     const land = land_costs[location]?.[size] || 650;
     const freight = freight_costs[location]?.[size] || 1000;

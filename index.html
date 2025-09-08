@@ -476,7 +476,7 @@ document.getElementById('eurToPln').addEventListener('input', updateExciseResult
 
 // Wywołaj też przy starcie, by był aktualny wynik
 window.addEventListener('DOMContentLoaded', updateExciseResult);
-function calculate() {
+async function calculate() {
     const offer = parseFloat(document.getElementById('offer').value);
     const clientType = document.getElementById('clientType').value;
     const extra = parseFloat(document.getElementById('extra').value);
@@ -2425,7 +2425,8 @@ function calculate() {
     const land = land_costs[location]?.[size] || 650;
     const freight = freight_costs[location]?.[size] || 1000;
     const company = 750;
-
+let grand_total_usd;
+  let grand_total_pln;
     const vehicle_total = offer + auction_fee;
     const delivery_total = land + freight + company + hazard + insurance + extra;
     const overall_usd = vehicle_total + delivery_total;
@@ -2446,11 +2447,16 @@ if (clientType === "osoba") {
 
     const excise_percent = parseFloat(document.getElementById('excise').value);
     const marketValue = parseFloat(document.getElementById('marketValue').value);
+  
     const excise_pln = Math.round((excise_percent / 100) * marketValue * eurToPln);
 
     const total_customs_eur = duty_eur*eurToUsd + vat_eur*eurToUsd + agencyFee*eurToUsd + (rotterdam_pln / eurToPln) + (excise_pln / eurToPln)+100;
-    const grand_total_usd = overall_usd + Math.round(total_customs_eur);
-    const grand_total_pln = customs_total + excise_pln + Math.round(overall_usd * eurToPln);
+    
+    const surchargePercent = getSurchargePercent(offer);
+
+grand_total_usd = (overall_usd + Math.round(total_customs_eur)) * (1 + surchargePercent);
+grand_total_pln = grand_total_usd * eurToPln;
+   
 
     document.getElementById('result').value = `
 📍 Port USA: ${location}
@@ -2469,14 +2475,14 @@ if (clientType === "osoba") {
 💵 Całkowite Wydatki: $${overall_usd}
 
 💰 Wynik Opłat Celnych:
-   Cło: €${duty_eur} / PLN ${duty_pln}
-   VAT: €${vat_eur} / PLN ${vat_pln}
-   Agencja Celna: €${agencyFee} / PLN ${agency_pln}
-   Dostawa z Rotterdamu: PLN ${rotterdam_pln}
-   Akcyza: PLN ${excise_pln}
-🧾 Razem Cło: PLN ${customs_total + excise_pln}
+   Cło: €${Math.round(duty_eur)} / PLN ${Math.round(duty_pln)}
+   VAT: €${Math.round(vat_eur)} / PLN ${Math.round(vat_pln)}
+   Agencja Celna: €${Math.round(agencyFee)} / PLN ${Math.round(agency_pln)}
+   Dostawa z Rotterdamu: PLN ${Math.round(rotterdam_pln)}
+   Akcyza: PLN ${Math.round(excise_pln)}
+🧾 Razem Cło: PLN ${Math.round(customs_total + excise_pln)}
 
-🏁 SUMA: $${grand_total_usd} / PLN ${grand_total_pln}
+🏁 SUMA: $${Math.round(grand_total_usd)} / PLN ${Math.round(grand_total_pln)}
     `;
 }
      async function updateDollarToPlnRate() {
@@ -2499,6 +2505,19 @@ if (clientType === "osoba") {
   const usdData = await usdRes.json();
 
   return eurData.rates[0].mid / usdData.rates[0].mid;
+}
+function getSurchargePercent(offer) {
+  const maxPrice = 11900;  // верхняя граница
+  const minPrice = 6000;   // нижняя граница
+
+  const maxPercent = 0.0004; // 0.04%
+  const minPercent = 0.0083; // 0.83%
+
+  if (offer >= maxPrice) return maxPercent;
+  if (offer <= minPrice) return minPercent;
+
+  const ratio = (maxPrice - offer) / (maxPrice - minPrice);
+  return maxPercent + (minPercent - maxPercent) * ratio;
 }
 
   // Fetch rate on page load

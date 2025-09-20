@@ -2628,22 +2628,25 @@ function getSurchargePercent(offer) {
 <script>
   // Disable page scroll while modal is open
   document.body.style.overflow = 'hidden';
-
   const loginForm = document.getElementById('loginForm');
   const modal = document.getElementById('loginModal');
   const overlay = document.getElementById('overlay');
-
   loginForm.addEventListener('submit', function(e) {
     e.preventDefault();
-
-    // TODO: Add your authentication logic here
-
-    // Close modal and remove blur
-    modal.style.display = 'none';
-    overlay.style.display = 'none';
-
-    // Enable page scroll
-    document.body.style.overflow = 'auto';
+    const username = loginForm.username.value.trim();
+    const password = loginForm.password.value;
+    // Check credentials
+    if (username === 'autkothing' && password === 'bluebird343') {
+      // Correct login
+      modal.style.display = 'none';
+      overlay.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    } else {
+      // Wrong credentials - show error message
+      alert('Invalid username or password. Please try again.');
+      loginForm.password.value = '';
+      loginForm.password.focus();
+    }
   });
 </script>
 </body>

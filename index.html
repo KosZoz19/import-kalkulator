@@ -4,26 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Import Kalkulator</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
-            background-color: #000;
-            color: #fff;
+            background: #fff;
+            color: #333;
             font-family: 'Segoe UI', sans-serif;
             margin: 0;
             padding: 20px;
+            min-height: 100vh;
         }
         .container {
             max-width: 800px;
             margin: auto;
-            background: #1a1a1a;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 0 20px #e60000;
+            background: #000;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(230, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            border: 1px solid #e60000;
         }
         label {
             display: block;
-            margin-top: 10px;
-            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #fff;
         }
         input, select, button, textarea {
             width: 100%;
@@ -37,6 +42,7 @@
         button {
             margin-top: 20px;
             background-color: #e60000;
+            color: #fff;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
@@ -46,10 +52,11 @@
             box-shadow: 0 0 10px #ff0000;
         }
         textarea {
-            background: #1a1a1a;
+            background: #000;
             margin-top: 20px;
             height: 300px;
             border-radius: 8px;
+            color: #fff;
         }
         select:focus, input:focus, button:focus, textarea:focus {
             outline: none;
@@ -62,12 +69,13 @@
         }
         .akcyza-box p {
             font-size: 1.1em;
+            color: #fff;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>🚗 Import Kalkulator</h1>
+<div class="container" id="main-content">
+    <h1 style="text-align: center; color: #e60000; margin-bottom: 30px; font-size: 2.5em; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">🚗 Import Kalkulator</h1>
 
     <label>Rozmiar</label>
     <select id="size">
@@ -326,8 +334,14 @@
 <option value="YORK HAVEN (PA) 17370">YORK HAVEN (PA) 17370</option>
     </datalist>
 
-    <label>Dodatkowe Wydatki ($)</label>
-    <input type="number" id="extra" value="0">
+    <button onclick="toggleExtra()" style="font-size: 20px; padding: 5px; margin-bottom: 10px;">+</button>
+    <div id="extra-div" style="display: none;">
+        <div class="expense-item">
+            <input type="text" placeholder="Expense name" class="extra-name" style="width: 60%; margin-right: 10px;">
+            <input type="number" placeholder="Price ($)" class="extra-price" value="0" style="width: 30%;">
+        </div>
+        <button onclick="addExpense()" style="margin-top: 10px;">Add Expense</button>
+    </div>
 
     <label>Niebezpieczny ładunek</label>
     <select id="hazard">
@@ -479,7 +493,7 @@ window.addEventListener('DOMContentLoaded', updateExciseResult);
 async function calculate() {
     const offer = parseFloat(document.getElementById('offer').value);
     const clientType = document.getElementById('clientType').value;
-    const extra = parseFloat(document.getElementById('extra').value);
+    const extra = Array.from(document.querySelectorAll('.extra-price')).reduce((sum, input) => sum + parseFloat(input.value || 0), 0);
     const hazard = document.getElementById('hazard').value === "Tak" ? 100 : 0;
     const insurance =document.getElementById('insurance').value === "Tak" ? Math.round(offer * 0.0216) : 0 ;
     const auction = document.getElementById('auction').value;
@@ -2520,37 +2534,48 @@ function getSurchargePercent(offer) {
   return maxPercent + (minPercent - maxPercent) * ratio;
 }
 
+function toggleExtra() {
+  const extraDiv = document.getElementById('extra-div');
+  extraDiv.style.display = extraDiv.style.display === 'none' ? 'block' : 'none';
+}
+
+function addExpense() {
+  const container = document.getElementById('extra-div');
+  const newDiv = document.createElement('div');
+  newDiv.className = 'expense-item';
+  newDiv.innerHTML = '<input type="text" placeholder="Expense name" class="extra-name" style="width: 60%; margin-right: 10px;"> <input type="number" placeholder="Price ($)" class="extra-price" value="0" style="width: 30%;"> <button onclick="removeExpense(this)">-</button>';
+  container.insertBefore(newDiv, container.lastElementChild);
+}
+
+function removeExpense(button) {
+  button.parentElement.remove();
+}
+
   // Fetch rate on page load
   window.addEventListener("DOMContentLoaded", updateDollarToPlnRate);
 </script>
 <!-- Login Modal -->
-<div id="loginModal" class="modal">
+<div id="login-modal" class="modal-overlay">
   <div class="modal-content">
-    <h2>Login</h2>
-    <form id="loginForm">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" placeholder="Enter username" required />
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" placeholder="Enter password" required />
-      <button type="submit" class="btn">Login</button>
-    </form>
+    <div id="login-form">
+      <h2>🔒 Login</h2>
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter username" required autofocus />
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter password" required />
+        <button type="submit" id="login-button" class="btn">Login</button>
+      </form>
+      <div id="login-error"></div>
+    </div>
+    <div id="success-animation" style="display: none; text-align: center;">
+      <div class="lock-icon">🔓</div>
+      <p>Access Granted!</p>
+    </div>
   </div>
 </div>
 
-<!-- Overlay to blur background -->
-<div id="overlay"></div>
-
-  /* Overlay to blur background */
-  #overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(8px);
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1000;
-  }
+<style>
   /* Error message styling */
   .error-message {
     color: #ff4c4c;
@@ -2561,27 +2586,54 @@ function getSurchargePercent(offer) {
     min-height: 20px;
     text-align: center;
   }
+
+  /* Shake animation */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+  }
+
+  .shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  /* Lock unlock animation */
+  .lock-icon {
+    font-size: 3em;
+    animation: unlock 1s ease-in-out;
+  }
+
+  @keyframes unlock {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(10deg) scale(1.1); }
+    100% { transform: rotate(0deg) scale(1); }
+  }
+</style>
 </style>
 
 <script>
-  // Disable page scroll while modal is open
-  document.body.style.overflow = 'hidden';
   const loginForm = document.getElementById('loginForm');
-  const modal = document.getElementById('loginModal');
-  const overlay = document.getElementById('overlay');
+  const modal = document.getElementById('login-modal');
   loginForm.addEventListener('submit', function(e) {
     e.preventDefault();
     const username = loginForm.username.value.trim();
     const password = loginForm.password.value;
+    const modalContent = document.querySelector('.modal-content');
     // Check credentials
     if (username === 'autkothing' && password === 'bluebird343') {
-      // Correct login
-      modal.style.display = 'none';
-      overlay.style.display = 'none';
-      document.body.style.overflow = 'auto';
+      // Correct login - show success animation
+      document.getElementById('login-form').style.display = 'none';
+      document.getElementById('success-animation').style.display = 'block';
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 2000);
     } else {
-      // Wrong credentials - show error message
-      alert('Invalid username or password. Please try again.');
+      // Wrong credentials - shake animation
+      modalContent.classList.add('shake');
+      setTimeout(() => {
+        modalContent.classList.remove('shake');
+      }, 500);
       loginForm.password.value = '';
       loginForm.password.focus();
     }

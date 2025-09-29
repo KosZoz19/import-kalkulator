@@ -17,10 +17,25 @@
         .container {
             max-width: 800px;
             margin: auto;
-            background: #000;
+            background: #fff;
             padding: 30px;
             border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(230, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(230, 0, 0, 0.1);
+            border: 2px solid #e60000;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .form-section {
+            display: flex;
+            flex-direction: column;
+        }
+        .result-section {
+            display: flex;
+            flex-direction: column;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
             border: 1px solid #e60000;
         }
         label {
@@ -28,14 +43,14 @@
             margin-top: 15px;
             margin-bottom: 5px;
             font-weight: 600;
-            color: #fff;
+            color: #e60000;
         }
         input, select, button, textarea {
             width: 100%;
             padding: 10px;
             margin-top: 5px;
-            background-color: #000;
-            color: #fff;
+            background-color: #fff;
+            color: #333;
             border: 2px solid #e60000;
             border-radius: 8px;
         }
@@ -52,11 +67,12 @@
             box-shadow: 0 0 10px #ff0000;
         }
         textarea {
-            background: #000;
+            background: #fff;
             margin-top: 20px;
-            height: 300px;
+            height: 400px;
             border-radius: 8px;
-            color: #fff;
+            color: #333;
+            font-family: monospace;
         }
         select:focus, input:focus, button:focus, textarea:focus {
             outline: none;
@@ -69,14 +85,15 @@
         }
         .akcyza-box p {
             font-size: 1.1em;
-            color: #fff;
+            color: #333;
         }
     </style>
 </head>
 <body>
 <div class="container" id="main-content">
-    <h1 style="text-align: center; color: #e60000; margin-bottom: 30px; font-size: 2.5em; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">🚗 Import Kalkulator</h1>
+    <h1 style="text-align: center; color: #e60000; margin-bottom: 30px; font-size: 2.5em; text-shadow: 0 2px 4px rgba(0,0,0,0.1); grid-column: 1 / -1;">🚗 Import Kalkulator</h1>
 
+    <div class="form-section">
     <label>Rozmiar</label>
     <select id="size">
         <option value="Sedan">Sedan</option>
@@ -332,7 +349,210 @@
 <option value="WICHITA (KS) 67216">WICHITA (KS) 67216</option>
 <option value="WINDHAM, ME 04062">WINDHAM, ME 04062</option>
 <option value="YORK HAVEN (PA) 17370">YORK HAVEN (PA) 17370</option>
-    </datalist>
+</datalist>
+
+<datalist id="iaai_locations">
+ <option value="Abilene 79601">Abilene 79601</option>
+ <option value="ACE - CARSON, CA 90248">ACE - CARSON, CA 90248</option>
+ <option value="ACE - PERRIS, CA 92571">ACE - PERRIS, CA 92571</option>
+ <option value="AKRON-CANTON, OH 44663">AKRON-CANTON, OH 44663</option>
+ <option value="ALBANY, NY 12303">ALBANY, NY 12303</option>
+ <option value="ALBUQUERQUE, NM 87105">ALBUQUERQUE, NM 87105</option>
+ <option value="ALTOONA, PA 16637">ALTOONA, PA 16637</option>
+ <option value="AMARILLO, TX 79118">AMARILLO, TX 79118</option>
+ <option value="ANAHEIM, CA 92806">ANAHEIM, CA 92806</option>
+ <option value="ANCHORAGE, AK 99654">ANCHORAGE, AK 99654</option>
+ <option value="Appleton, 54914">Appleton, 54914</option>
+ <option value="ASHEVILLE, NC 28732">ASHEVILLE, NC 28732</option>
+ <option value="ASHLAND, KY 41102">ASHLAND, KY 41102</option>
+ <option value="ATLANTA, GA 30052">ATLANTA, GA 30052</option>
+ <option value="ATLANTA EAST, GA 30680">ATLANTA EAST, GA 30680</option>
+ <option value="ATLANTA NORTH, GA 30101">ATLANTA NORTH, GA 30101</option>
+ <option value="ATLANTA SOUTH, GA 30260">ATLANTA SOUTH, GA 30260</option>
+ <option value="AUSTIN, TX 78616">AUSTIN, TX 78616</option>
+ <option value="AUSTIN NORTH, TX 76527">AUSTIN NORTH, TX 76527</option>
+ <option value="AVENEL NEW JERSEY, NJ 07001">AVENEL NEW JERSEY, NJ 07001</option>
+ <option value="BALTIMORE, MD 21226">BALTIMORE, MD 21226</option>
+ <option value="BATON ROUGE, LA 70721">BATON ROUGE, LA 70721</option>
+ <option value="BILLINGS, MT 59101">BILLINGS, MT 59101</option>
+ <option value="BIRMINGHAM, AL 35022">BIRMINGHAM, AL 35022</option>
+ <option value="BOISE, ID 83642">BOISE, ID 83642</option>
+ <option value="BOSTON - SHIRLEY, MA 01464">BOSTON - SHIRLEY, MA 01464</option>
+ <option value="BOWLING GREEN, KY 42101">BOWLING GREEN, KY 42101</option>
+ <option value="BRIDGEPORT, PA 19405">BRIDGEPORT, PA 19405</option>
+ <option value="BUCKHANNON, WV 26201">BUCKHANNON, WV 26201</option>
+ <option value="BUFFALO, NY 14207">BUFFALO, NY 14207</option>
+ <option value="BURLINGTON, VT 05452">BURLINGTON, VT 05452</option>
+ <option value="CASPER, WY 82601">CASPER, WY 82601</option>
+ <option value="CENTRAL NEW JERSEY, NJ 07751">CENTRAL NEW JERSEY, NJ 07751</option>
+ <option value="CHARLESTON, SC 29470">CHARLESTON, SC 29470</option>
+ <option value="CHARLOTTE, NC 28206">CHARLOTTE, NC 28206</option>
+ <option value="CHATTANOOGA, TN 37404">CHATTANOOGA, TN 37404</option>
+ <option value="CHICAGO-NORTH, IL 60118">CHICAGO-NORTH, IL 60118</option>
+ <option value="CHICAGO-SOUTH, IL 60428">CHICAGO-SOUTH, IL 60428</option>
+ <option value="CHICAGO-WEST, IL 60505">CHICAGO-WEST, IL 60505</option>
+ <option value="CINCINNATI, OH 45069">CINCINNATI, OH 45069</option>
+ <option value="CINCINNATI-SOUTH, OH 45102">CINCINNATI-SOUTH, OH 45102</option>
+ <option value="CLEARWATER, FL 33760">CLEARWATER, FL 33760</option>
+ <option value="CLEVELAND, OH 44053">CLEVELAND, OH 44053</option>
+ <option value="COLORADO SPRINGS, CO 80925">COLORADO SPRINGS, CO 80925</option>
+ <option value="COLTON, CA 92324">COLTON, CA 92324</option>
+ <option value="COLUMBIA, SC 29209">COLUMBIA, SC 29209</option>
+ <option value="COLUMBUS, OH 43123">COLUMBUS, OH 43123</option>
+ <option value="CONCORD, NC 28025">CONCORD, NC 28025</option>
+ <option value="CORPUS CHRISTI,78405">CORPUS CHRISTI,78405</option>
+ <option value="CULPEPER, VA 22701">CULPEPER, VA 22701</option>
+ <option value="DALLAS, TX 75172">DALLAS, TX 75172</option>
+ <option value="DALLAS/FT WORTH, TX 75050">DALLAS/FT WORTH, TX 75050</option>
+ <option value="DAVENPORT, IA 52802">DAVENPORT, IA 52802</option>
+ <option value="DAYTON, OH 45417">DAYTON, OH 45417</option>
+ <option value="DENVER ,80221">DENVER ,80221</option>
+ <option value="DENVER EAST, CO 80022">DENVER EAST, CO 80022</option>
+ <option value="DES MOINES, IA 50069">DES MOINES, IA 50069</option>
+ <option value="DETROIT, MI 48111">DETROIT, MI 48111</option>
+ <option value="DOTHAN, AL 36345">DOTHAN, AL 36345</option>
+ <option value="DUNDALK, MD 21222">DUNDALK, MD 21222</option>
+ <option value="EAST BAY, CA 94565">EAST BAY, CA 94565</option>
+ <option value="EL PASO, TX 79938">EL PASO, TX 79938</option>
+ <option value="ELKTON, MD 21921">ELKTON, MD 21921</option>
+ <option value="ENGLISHTOWN, NJ 07726">ENGLISHTOWN, NJ 07726</option>
+ <option value="ERIE, PA 16416">ERIE, PA 16416</option>
+ <option value="EUGENE, OR 97402">EUGENE, OR 97402</option>
+ <option value="FARGO, ND 58102">FARGO, ND 58102</option>
+ <option value="FAYETTEVILLE, AR 72744">FAYETTEVILLE, AR 72744</option>
+ <option value="FLINT, MI 48507">FLINT, MI 48507</option>
+ <option value="FONTANA, CA 92335">FONTANA, CA 92335</option>
+ <option value="FORT MYERS, FL 33913">FORT MYERS, FL 33913</option>
+ <option value="FORT PIERCE, FL 34981">FORT PIERCE, FL 34981</option>
+ <option value="FORT WAYNE, IN 46806">FORT WAYNE, IN 46806</option>
+ <option value="FORT WORTH NORTH, TX 76247">FORT WORTH NORTH, TX 76247</option>
+ <option value="FREDERICKSBURG SOUTH, 22408">FREDERICKSBURG SOUTH, 22408</option>
+ <option value="FREMONT, CA 94538">FREMONT, CA 94538</option>
+ <option value="FRESNO, CA 93705">FRESNO, CA 93705</option>
+ <option value="GRAND RAPIDS, MI 49315">GRAND RAPIDS, MI 49315</option>
+ <option value="GREENSBORO, NC 27253">GREENSBORO, NC 27253</option>
+ <option value="GREENVILLE, SC 29681">GREENVILLE, SC 29681</option>
+ <option value="GRENADA, MS 38901">GRENADA, MS 38901</option>
+ <option value="GULF COAST, MS 39562">GULF COAST, MS 39562</option>
+ <option value="HARTFORD, CT 06088">HARTFORD, CT 06088</option>
+ <option value="HARTFORD-SOUTH, 06457">HARTFORD-SOUTH, 06457</option>
+ <option value="HIGH DESERT, CA 92345">HIGH DESERT, CA 92345</option>
+ <option value="HIGH POINT, NC 27263">HIGH POINT, NC 27263</option>
+ <option value="HONOLULU (KAHALUI, MAUI ISLAND) 96740">HONOLULU (KAHALUI, MAUI ISLAND) 96740</option>
+ <option value="HONOLULU (KAILUA-KONA, HAWAII ISLAND) 96707">HONOLULU (KAILUA-KONA, HAWAII ISLAND) 96707</option>
+ <option value="HONOLULU (KAPOLEI, OAHU ISLAND) 96766">HONOLULU (KAPOLEI, OAHU ISLAND) 96766</option>
+ <option value="HONOLULU (LIHUE, KAUAI ISLAND) 96766">HONOLULU (LIHUE, KAUAI ISLAND) 96766</option>
+ <option value="HOUSTON, TX 77038">HOUSTON, TX 77038</option>
+ <option value="HOUSTON SOUTH, TX 77583">HOUSTON SOUTH, TX 77583</option>
+ <option value="HOUSTON-NORTH, TX 77032">HOUSTON-NORTH, TX 77032</option>
+ <option value="HUNTSVILLE, AL 35613">HUNTSVILLE, AL 35613</option>
+ <option value="INDIANAPOLIS, IN 46217">INDIANAPOLIS, IN 46217</option>
+ <option value="INDIANAPOLIS SOUTH, IN 47229">INDIANAPOLIS SOUTH, IN 47229</option>
+ <option value="JACKSON, MS 39272">JACKSON, MS 39272</option>
+ <option value="JACKSONVILLE, FL 32218">JACKSONVILLE, FL 32218</option>
+ <option value="KANSAS CITY, KS 66111">KANSAS CITY, KS 66111</option>
+ <option value="KANSAS CITY EAST, MO 64076">KANSAS CITY EAST, MO 64076</option>
+ <option value="KNOXVILLE, TN 37914">KNOXVILLE, TN 37914</option>
+ <option value="LAFAYETTE, LA 70507">LAFAYETTE, LA 70507</option>
+ <option value="LAS VEGAS, NV 89122">LAS VEGAS, NV 89122</option>
+ <option value="LAUREL, 20707">LAUREL, 20707</option>
+ <option value="LEXINGTON, SC 29073">LEXINGTON, SC 29073</option>
+ <option value="LINCOLN, IL 62656">LINCOLN, IL 62656</option>
+ <option value="LITTLE ROCK, AR 72142">LITTLE ROCK, AR 72142</option>
+ <option value="LIVINGSTON, LA 70754">LIVINGSTON, LA 70754</option>
+ <option value="LONG ISLAND, NY 11763">LONG ISLAND, NY 11763</option>
+ <option value="LONGVIEW, TX 75605">LONGVIEW, TX 75605</option>
+ <option value="LOS ANGELES, CA 90248">LOS ANGELES, CA 90248</option>
+ <option value="LOS ANGELES SOUTH, CA 90744">LOS ANGELES SOUTH, CA 90744</option>
+ <option value="LOUISVILLE , KY 40165">LOUISVILLE , KY 40165</option>
+ <option value="LOUISVILLE NORTH, KY 40019">LOUISVILLE NORTH, KY 40019</option>
+ <option value="LUBBOCK, TX 79415">LUBBOCK, TX 79415</option>
+ <option value="MACON, GA 31217">MACON, GA 31217</option>
+ <option value="MANCHESTER, NH 03079">MANCHESTER, NH 03079</option>
+ <option value="MCALLEN, TX 78537">MCALLEN, TX 78537</option>
+ <option value="MEMPHIS, TN 38053">MEMPHIS, TN 38053</option>
+ <option value="METRO DC, MD 20613">METRO DC, MD 20613</option>
+ <option value="MIAMI, 33054">MIAMI, 33054</option>
+ <option value="MIAMI-NORTH, FL 33332">MIAMI-NORTH, FL 33332</option>
+ <option value="MILWAUKEE, WI 53089">MILWAUKEE, WI 53089</option>
+ <option value="MINNEAPOLIS SOUTH, MN 55065">MINNEAPOLIS SOUTH, MN 55065</option>
+ <option value="MINNEAPOLIS/ST. PAUL, MN 55117">MINNEAPOLIS/ST. PAUL, MN 55117</option>
+ <option value="MISSOULA, MT 59808">MISSOULA, MT 59808</option>
+ <option value="MONTICELLO, NY 12701">MONTICELLO, NY 12701</option>
+ <option value="NASHVILLE, TN 37218">NASHVILLE, TN 37218</option>
+ <option value="NEW CASTLE, DE 19720">NEW CASTLE, DE 19720</option>
+ <option value="NEW ORLEANS , 70433">NEW ORLEANS , 70433</option>
+ <option value="NEW ORLEANS EAST, LA 70126">NEW ORLEANS EAST, LA 70126</option>
+ <option value="NEWBURGH, NY 12575">NEWBURGH, NY 12575</option>
+ <option value="NORTHERN NEW JERSEY, 07008">NORTHERN NEW JERSEY, 07008</option>
+ <option value="NORTH HOLLYWOOD, CA 91605">NORTH HOLLYWOOD, CA 91605</option>
+ <option value="NORTHERN VIRGINIA, VA 22406">NORTHERN VIRGINIA, VA 22406</option>
+ <option value="OKLAHOMA CITY, OK 73121">OKLAHOMA CITY, OK 73121</option>
+ <option value="OMAHA, NE 68059">OMAHA, NE 68059</option>
+ <option value="ORLANDO, FL 32824">ORLANDO, FL 32824</option>
+ <option value="ORLANDO-NORTH, FL 32773">ORLANDO-NORTH, FL 32773</option>
+ <option value="PADUCAH, KY 42003">PADUCAH, KY 42003</option>
+ <option value="PENSACOLA, FL 32583">PENSACOLA, FL 32583</option>
+ <option value="PERMIAN BASIN, TX 79764">PERMIAN BASIN, TX 79764</option>
+ <option value="PHILADELPHIA, PA 19428">PHILADELPHIA, PA 19428</option>
+ <option value="PHILADELPHIA EAST, 19136">PHILADELPHIA EAST, 19136</option>
+ <option value="PHOENIX, AZ 85041">PHOENIX, AZ 85041</option>
+ <option value="PITTSBURGH, PA 15001">PITTSBURGH, PA 15001</option>
+ <option value="PITTSBURGH-NORTH, PA 15044">PITTSBURGH-NORTH, PA 15044</option>
+ <option value="PORT MURRAY, NJ 07865">PORT MURRAY, NJ 07865</option>
+ <option value="PORTAGE, WI 53901">PORTAGE, WI 53901</option>
+ <option value="PORTLAND, OR 97230">PORTLAND, OR 97230</option>
+ <option value="PORTLAND - GORHAM, ME 04038">PORTLAND - GORHAM, ME 04038</option>
+ <option value="PORTLAND WEST, OR 97217">PORTLAND WEST, OR 97217</option>
+ <option value="PROVIDENCE, RI 02915">PROVIDENCE, RI 02915</option>
+ <option value="PROVO, UT 84648">PROVO, UT 84648</option>
+ <option value="PULASKI, VA 24301">PULASKI, VA 24301</option>
+ <option value="PUYALLUP, 98374">PUYALLUP, 98374</option>
+ <option value="RALEIGH, NC 27520">RALEIGH, NC 27520</option>
+ <option value="RENO, NV 89437">RENO, NV 89437</option>
+ <option value="RICHMOND, VA 23005">RICHMOND, VA 23005</option>
+ <option value="RIVERSIDE, CA 92509-1103">RIVERSIDE, CA 92509-1103</option>
+ <option value="ROANOKE, VA 24122">ROANOKE, VA 24122</option>
+ <option value="ROCHESTER, NY 14416">ROCHESTER, NY 14416</option>
+ <option value="ROSEDALE, 21237">ROSEDALE, 21237</option>
+ <option value="SACRAMENTO, CA 95742">SACRAMENTO, CA 95742</option>
+ <option value="SALT LAKE CITY, UT 84401">SALT LAKE CITY, UT 84401</option>
+ <option value="SAN ANTONIO, 78211">SAN ANTONIO, 78211</option>
+ <option value="SAN ANTONIO-SOUTH, TX 78224">SAN ANTONIO-SOUTH, TX 78224</option>
+ <option value="SAN DIEGO, CA 92154">SAN DIEGO, CA 92154</option>
+ <option value="SANTA CLARITA, CA 91387">SANTA CLARITA, CA 91387</option>
+ <option value="SAVANNAH, GA 31326">SAVANNAH, GA 31326</option>
+ <option value="SAYREVILLE, NJ 08872">SAYREVILLE, NJ 08872</option>
+ <option value="SCRANTON, PA 18640">SCRANTON, PA 18640</option>
+ <option value="SEATTLE, WA 98374">SEATTLE, WA 98374</option>
+ <option value="SHADY SPRING, WV 25918">SHADY SPRING, WV 25918</option>
+ <option value="SHREVEPORT, LA 71033">SHREVEPORT, LA 71033</option>
+ <option value="SIOUX FALLS, SD 57039">SIOUX FALLS, SD 57039</option>
+ <option value="SOUTH BEND, IN 46619">SOUTH BEND, IN 46619</option>
+ <option value="SOUTHERN NEW JERSEY, NJ 08012">SOUTHERN NEW JERSEY, NJ 08012</option>
+ <option value="SPECIALTY DIVISION, IL 60173">SPECIALTY DIVISION, IL 60173</option>
+ <option value="SPOKANE, WA 99216">SPOKANE, WA 99216</option>
+ <option value="SPRINGFIELD, MO 65803">SPRINGFIELD, MO 65803</option>
+ <option value="ST. LOUIS, IL 62232">ST. LOUIS, IL 62232</option>
+ <option value="STATEN ISLAND, NY 10314">STATEN ISLAND, NY 10314</option>
+ <option value="STOCKTON, CA 95205">STOCKTON, CA 95205</option>
+ <option value="SUFFOLK, VA 23434">SUFFOLK, VA 23434</option>
+ <option value="SYRACUSE, NY 13039">SYRACUSE, NY 13039</option>
+ <option value="TAMPA, FL 34221">TAMPA, FL 34221</option>
+ <option value="TAMPA NORTH, FL 34667">TAMPA NORTH, FL 34667</option>
+ <option value="TAUNTON, MA 02718">TAUNTON, MA 02718</option>
+ <option value="TEMPLETON, MA 01468">TEMPLETON, MA 01468</option>
+ <option value="TIDEWATER, VA 23693">TIDEWATER, VA 23693</option>
+ <option value="TIFTON, GA 31794">TIFTON, GA 31794</option>
+ <option value="TUCSON, AZ 85714">TUCSON, AZ 85714</option>
+ <option value="TULSA, OK 74107">TULSA, OK 74107</option>
+ <option value="WESTCHESTER, IL 60154">WESTCHESTER, IL 60154</option>
+ <option value="WEST PALM BEACH, FL 33478">WEST PALM BEACH, FL 33478</option>
+ <option value="WESTERN COLORADO, CO 81416">WESTERN COLORADO, CO 81416</option>
+ <option value="WICHITA, KS 67219">WICHITA, KS 67219</option>
+ <option value="WILMINGTON, NC 28429">WILMINGTON, NC 28429</option>
+ <option value="YORK SPRINGS, PA 17372">YORK SPRINGS, PA 17372</option>
+</datalist>
 
     <button onclick="toggleExtra()" style="font-size: 20px; padding: 5px; margin-bottom: 10px;">+</button>
     <div id="extra-div" style="display: none;">
@@ -380,10 +600,27 @@
     <div class="akcyza-box">
         <p> <span id="exciseOutput">0 PLN</span></p>
     </div>
+    </div>
+
 </div>
 
+<script src="filtered_by_list_iaai_costs.js"></script>
 <script>
     let euroToUsdRate = 1;
+
+    function updateLocations() {
+        const auction = document.getElementById('auction').value;
+        const locationInput = document.getElementById('location');
+        locationInput.value = '';
+        if (auction === 'IAAI') {
+            locationInput.setAttribute('list', 'iaai_locations');
+        } else if (auction === 'Copart') {
+            locationInput.setAttribute('list', 'locations');
+        }
+    }
+
+    document.getElementById('auction').addEventListener('change', updateLocations);
+    updateLocations(); // Initial call
     function getCopartFee(price) {
     if (price <= 49.99) return 25.00;
     if (price <= 99.99) return 45.00;
@@ -2435,17 +2672,29 @@ async function calculate() {
   "YORK HAVEN (PA) 17370": { Sedan: 575, SUV: 575, Fast: 575, Oversize: 850 }
     };
  const eurToUsd = await getEuroToUsdRate();
-    const size = document.getElementById('size').value;
-    const land = land_costs[location]?.[size] || 650;
-    const freight = freight_costs[location]?.[size] || 1000;
-    const company = 750;
+     const size = document.getElementById('size').value;
+     const eurToPln = parseFloat(document.getElementById('eurToPln').value);
+     let land, freight;
+     console.log('Location:', location);
+     console.log('Auction:', auction);
+     console.log('Size:', size);
+     if (auction === 'IAAI') {
+         land = iaai_land_costs[location]?.[size] || 650;
+         freight = iaai_freight_costs[location]?.[size] || 1000;
+         console.log('IAAI Land:', iaai_land_costs[location]);
+         console.log('IAAI Freight:', iaai_freight_costs[location]);
+     } else {
+         land = land_costs[location]?.[size] || 650;
+         freight = freight_costs[location]?.[size] || 1000;
+     }
+     console.log('Final Land:', land);
+     console.log('Final Freight:', freight);
+     const company = 3300 / eurToPln;
 let grand_total_usd;
   let grand_total_pln;
     const vehicle_total = offer + auction_fee;
     const delivery_total = land + freight + company + hazard + insurance + extra;
     const overall_usd = vehicle_total + delivery_total;
-
-    const eurToPln = parseFloat(document.getElementById('eurToPln').value);
     const agencyFee = parseFloat(document.getElementById('agencyFee').value);
     let duty_eur = Math.round(offer / 9.20810313076);
     let vat_eur = Math.round((offer + duty_eur) * 0.2046);
@@ -2481,12 +2730,12 @@ grand_total_pln = grand_total_usd * eurToPln;
 💰 Koszt z prowizją: $${vehicle_total}
 🚚 Transport Lądowy: $${land}
 🚢 Fracht: $${freight}
-💼 Prowizja Firmy (+VAT): $${company}
+💼 Prowizja Firmy (Brutto): PLN ${Math.round(company * eurToPln)}
 🧾 Dodatkowe Wydatki: $${extra}
 ☢️ Niebezpieczny ładunek: $${hazard}
 🛡️ Ubezpieczenie: $${insurance}
-📦 Razem Dostawa: $${delivery_total}
-💵 Całkowite Wydatki: $${overall_usd}
+📦 Razem Dostawa: $${Math.round(delivery_total)}
+💵 Całkowite Wydatki: $${Math.round(overall_usd)}
 
 💰 Wynik Opłat Celnych:
    Cło: €${Math.round(duty_eur)} / PLN ${Math.round(duty_pln)}

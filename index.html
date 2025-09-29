@@ -736,7 +736,7 @@ async function calculate() {
     const auction = document.getElementById('auction').value;
     const location = document.getElementById('location').value;
 
-    const auction_fee = auction === "Copart" ? getCopartFee(offer) : getIAAIFee(offer);
+    const auction_fee = (auction === "Copart" ? getCopartFee(offer) : getIAAIFee(offer)) + extra;
 
      const freight_costs = {
          "ABILENE, TX 79601": {
@@ -2693,7 +2693,7 @@ async function calculate() {
 let grand_total_usd;
   let grand_total_pln;
     const vehicle_total = offer + auction_fee;
-    const delivery_total = land + freight + company + hazard + insurance + extra;
+    const delivery_total = land + freight + company + hazard + insurance;
     const overall_usd = vehicle_total + delivery_total;
     const agencyFee = parseFloat(document.getElementById('agencyFee').value);
     let duty_eur = Math.round(offer / 9.20810313076);
@@ -2731,18 +2731,17 @@ grand_total_pln = grand_total_usd * eurToPln;
 🚚 Transport Lądowy: $${land}
 🚢 Fracht: $${freight}
 💼 Prowizja Firmy (Brutto): PLN ${Math.round(company * eurToPln)}
-🧾 Dodatkowe Wydatki: $${extra}
 ☢️ Niebezpieczny ładunek: $${hazard}
 🛡️ Ubezpieczenie: $${insurance}
 📦 Razem Dostawa: $${Math.round(delivery_total)}
 💵 Całkowite Wydatki: $${Math.round(overall_usd)}
 
 💰 Wynik Opłat Celnych:
-   Cło: €${Math.round(duty_eur)} / PLN ${Math.round(duty_pln)}
-   VAT: €${Math.round(vat_eur)} / PLN ${Math.round(vat_pln)}
-   Agencja Celna: €${Math.round(agencyFee)} / PLN ${Math.round(agency_pln)}
-   Dostawa z Rotterdamu: PLN ${Math.round(rotterdam_pln)}
-   Akcyza: PLN ${Math.round(excise_pln)}
+  Cło: €${Math.round(duty_eur)} / PLN ${Math.round(duty_pln)}
+  VAT: €${Math.round(vat_eur)} / PLN ${Math.round(vat_pln)}
+  Agencja Celna: €${Math.round(agencyFee)} / PLN ${Math.round(agency_pln)}
+  Dostawa z Rotterdamu: PLN ${Math.round(rotterdam_pln)}
+  Akcyza: PLN ${Math.round(excise_pln)}
 🧾 Razem Cło: PLN ${Math.round(customs_total + excise_pln)}
 
 🏁 SUMA: $${Math.round(grand_total_usd)} / PLN ${Math.round(grand_total_pln)}
